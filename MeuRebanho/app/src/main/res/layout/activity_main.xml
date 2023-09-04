@@ -62,27 +62,28 @@
 
     <Button
         android:id="@+id/bnt_init_login"
-        android:layout_width="142dp"
-        android:layout_height="54dp"
+        android:layout_width="162dp"
+        android:layout_height="48dp"
         android:text="Entrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/senha_usuario"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <TextView
         android:id="@+id/init_cadastro"
-        android:layout_width="87dp"
-        android:layout_height="18dp"
+        android:layout_width="70dp"
+        android:layout_height="15dp"
         android:layout_marginBottom="100dp"
         android:linksClickable="true"
         android:text="Criar conta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bnt_init_login"
-        app:layout_constraintVertical_bias="0.494" />
+        app:layout_constraintVertical_bias="0.483" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,10 +13,22 @@
         android:theme="@style/Theme.MeuRebanho"
         tools:targetApi="31">
         <activity
-            android:name=".CadastroUsuarioActivity"
+            android:name=".RelatoriosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalizarAnimalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConsultarAnimaisActivity"
             android:exported="false" />
         <activity
             android:name=".MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroAnimalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroUsuarioActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
