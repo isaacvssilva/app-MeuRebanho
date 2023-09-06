@@ -4,40 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/fundogado2">
+
 
     <TextView
-        android:id="@+id/text_nome_app"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="379dp"
+        android:layout_height="82dp"
+        android:fontFamily="serif"
         android:text="Meu Rebanho"
+        android:textAlignment="center"
+        android:textColor="@color/material_dynamic_neutral90"
+        android:textSize="44sp"
+        android:textStyle="bold"
+        android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.162" />
+        app:layout_constraintVertical_bias="0.138" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_usuario"
         android:layout_width="343dp"
         android:layout_height="102dp"
         android:padding="8dp"
+        android:paddingLeft="15sp"
+
+        android:textColor="@color/white"
         app:counterEnabled="false"
         app:counterMaxLength="25"
         app:helperText="Ex: joao@gmail.com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_nome_app"
-        app:layout_constraintVertical_bias="0.125">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_text_view"
+            android:backgroundTint="@color/cinza_claro"
             android:drawableLeft="@drawable/ic_email_24"
-            android:drawablePadding="8dp"
-            android:hint="Login" />
+            android:drawablePadding="30dp"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="Login"
+            android:textAppearance="@style/caixaTextoEmail"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/cinza_claro"
+            android:textColorLink="@color/cinza_claro"
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,45 +63,63 @@
         android:id="@+id/senha_usuario"
         android:layout_width="343dp"
         android:layout_height="102dp"
+        android:layout_marginTop="11dp"
+
+        android:layout_marginBottom="220dp"
         android:padding="8dp"
+        android:paddingLeft="10sp"
+        app:boxStrokeColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_usuario"
-        app:layout_constraintVertical_bias="0.1"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_text_view"
+            android:backgroundTint="@color/cinza_claro"
+            android:fontFamily="@font/roboto_medium"
             android:hint="Senha"
-            android:password="true" />
+            android:password="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            tools:visibility="visible" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/bnt_init_login"
-        android:layout_width="162dp"
-        android:layout_height="48dp"
+        android:layout_width="327dp"
+        android:layout_height="59dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:fontFamily="@font/roboto_medium"
         android:text="Entrar"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:cornerRadius="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/senha_usuario"
         app:layout_constraintVertical_bias="0.164" />
 
     <TextView
         android:id="@+id/init_cadastro"
-        android:layout_width="70dp"
-        android:layout_height="15dp"
-        android:layout_marginBottom="100dp"
+        android:layout_width="108dp"
+        android:layout_height="32dp"
+        android:fontFamily="@font/roboto_medium"
         android:linksClickable="true"
         android:text="Criar conta"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bnt_init_login"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
