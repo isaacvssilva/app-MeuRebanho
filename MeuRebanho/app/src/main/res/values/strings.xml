@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MeuRebanho</string>
+    <string name="criar_conta"><u>Criar Conta</u></string>
+    <string name="inicar_sessao"><u>Iniciar sessão</u></string>
 </resources>

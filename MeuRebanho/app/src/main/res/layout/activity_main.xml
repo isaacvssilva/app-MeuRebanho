@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_nome_app"
         android:layout_width="379dp"
         android:layout_height="82dp"
         android:fontFamily="serif"
@@ -29,13 +29,16 @@
         android:id="@+id/login_usuario"
         android:layout_width="343dp"
         android:layout_height="102dp"
+        android:backgroundTint="#83C7C7C7"
         android:padding="8dp"
         android:paddingLeft="15sp"
-
-        android:textColor="@color/white"
+        app:boxStrokeColor="@color/white"
+        android:textColorHint="@color/white"
+        app:boxBackgroundColor="#83C7C7C7"
         app:counterEnabled="false"
-        app:counterMaxLength="25"
         app:helperText="Ex: joao@gmail.com"
+        app:helperTextTextColor="@color/white"
+        app:hintTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,16 +48,17 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_text_view"
-            android:backgroundTint="@color/cinza_claro"
+            android:textColorHint="@color/white"
+            app:boxBackgroundColor="#83C7C7C7"
+            app:boxStrokeColor="@color/white"
+            app:hintTextColor="@color/white"
             android:drawableLeft="@drawable/ic_email_24"
-            android:drawablePadding="30dp"
+            android:drawablePadding="8dp"
             android:fontFamily="@font/roboto_medium"
             android:hint="Login"
+            android:inputType="text|textEmailAddress"
             android:textAppearance="@style/caixaTextoEmail"
             android:textColor="@color/white"
-            android:textColorHighlight="@color/cinza_claro"
-            android:textColorLink="@color/cinza_claro"
             android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,23 +67,21 @@
         android:id="@+id/senha_usuario"
         android:layout_width="343dp"
         android:layout_height="102dp"
-        android:layout_marginTop="11dp"
-
         android:layout_marginBottom="220dp"
         android:padding="8dp"
-        android:paddingLeft="10sp"
+        android:paddingStart="10sp"
+        android:textColorHint="@color/white"
+        app:boxBackgroundColor="#83C7C7C7"
         app:boxStrokeColor="@color/white"
+        app:hintTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_usuario"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_text_view"
-            android:backgroundTint="@color/cinza_claro"
             android:fontFamily="@font/roboto_medium"
             android:hint="Senha"
             android:password="true"
@@ -111,7 +113,7 @@
         android:layout_height="32dp"
         android:fontFamily="@font/roboto_medium"
         android:linksClickable="true"
-        android:text="Criar conta"
+        android:text="@string/criar_conta"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
