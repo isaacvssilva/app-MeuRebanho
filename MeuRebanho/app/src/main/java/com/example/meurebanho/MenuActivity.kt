@@ -43,6 +43,14 @@ class MenuActivity : AppCompatActivity() {
                     val intent = Intent(this, RelatoriosActivity::class.java)
                     startActivity(intent)
                 }
+                "Alertas" -> {
+                    val intent = Intent(this, AlertasActivity::class.java)
+                    startActivity(intent)
+                }
+                "Config. rastreador" -> {
+                    val intent = Intent(this, ConfigurarRastreadorActivity::class.java)
+                    startActivity(intent)
+                }
                 else -> {
                 }
             }
@@ -74,6 +82,14 @@ class MenuActivity : AppCompatActivity() {
 
         /* Criando um objeto MenuData para "Relatórios" com a imagem correspondente */
         menu = MenuData("Relatórios", R.drawable.graficos)
+        menuList.add(menu)
+
+        /* Criando um objeto MenuData para "Alertas" com a imagem correspondente */
+        menu = MenuData("Alertas", R.drawable.alertas)
+        menuList.add(menu)
+
+        /* Criando um objeto MenuData para "Configurar rastreador" com a imagem correspondente */
+        menu = MenuData("Config. rastreador", R.drawable.loc_config)
         menuList.add(menu)
 
         /* Notificando o adaptador de que os dados estão sendo atualizados */
