@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.138" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_usuario"
+        android:id="@+id/TextInputEditText_login"
         android:layout_width="343dp"
         android:layout_height="102dp"
         android:backgroundTint="#83C7C7C7"
@@ -46,12 +46,9 @@
         app:layout_constraintVertical_bias="0.47">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailLoginUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
-            app:boxBackgroundColor="#83C7C7C7"
-            app:boxStrokeColor="@color/white"
-            app:hintTextColor="@color/white"
             android:drawableLeft="@drawable/ic_email_24"
             android:drawablePadding="8dp"
             android:fontFamily="@font/roboto_medium"
@@ -59,12 +56,16 @@
             android:inputType="text|textEmailAddress"
             android:textAppearance="@style/caixaTextoEmail"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textColorHint="@color/white"
+            android:textSize="16sp"
+            app:boxBackgroundColor="#83C7C7C7"
+            app:boxStrokeColor="@color/white"
+            app:hintTextColor="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/senha_usuario"
+        android:id="@+id/TextInputEditText_login_senha"
         android:layout_width="343dp"
         android:layout_height="102dp"
         android:layout_marginBottom="220dp"
@@ -80,6 +81,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/senha_login_usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
@@ -104,7 +106,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senha_usuario"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_login_senha"
         app:layout_constraintVertical_bias="0.164" />
 
     <TextView
