@@ -15,8 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/background_text_view"
-        android:backgroundTint="#ED8C1C"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="16dp">
 
         <ImageView

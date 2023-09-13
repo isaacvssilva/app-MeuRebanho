@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="cinza_letra">#626262</color>
     <color name="cinza_claro">#C9C9C9</color>
+    <color name="verdefolha">#078C4C</color>
+
 
 </resources>

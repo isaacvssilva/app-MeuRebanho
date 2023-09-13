@@ -4,70 +4,110 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".CadastroAnimalActivity">
 
-    <EditText
-        android:id="@+id/cad_cor_animal"
-        android:layout_width="272dp"
-        android:layout_height="54dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Cor"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="480dp"
+        android:dividerPadding="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cad_sexo_animal"
-        app:layout_constraintVertical_bias="0.096" />
-
-    <EditText
-        android:id="@+id/cad_sexo_animal"
-        android:layout_width="272dp"
-        android:layout_height="54dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Sexo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cad_especie_animal"
-        app:layout_constraintVertical_bias="0.095" />
-
-    <EditText
-        android:id="@+id/cad_especie_animal"
-        android:layout_width="272dp"
-        android:layout_height="54dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Espécie"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_weight="5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.43">
 
-    <CalendarView
-        android:id="@+id/data_registro_animal"
-        android:layout_width="359dp"
-        android:layout_height="297dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cad_cor_animal">
-    </CalendarView>
+        <EditText
+            android:id="@+id/cad_especie_animal"
+            android:layout_width="327dp"
+            android:layout_height="54dp"
+            android:background="@drawable/style_edittext"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="8dp"
+            android:text="Espécie" />
+
+        <EditText
+            android:id="@+id/cad_sexo_animal"
+            android:layout_width="327dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/style_edittext"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="8dp"
+            android:text="Sexo" />
+
+        <EditText
+            android:id="@+id/cad_cor_animal"
+            android:layout_width="327dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/style_edittext"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="8dp"
+            android:text="Cor" />
+
+        <EditText
+            android:id="@+id/cad_raca_animal"
+            android:layout_width="327dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/style_edittext"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="8dp"
+            android:text="Raça" />
+
+        <EditText
+            android:id="@+id/cad_datanasc_animal"
+            android:layout_width="327dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/style_edittext"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="8dp"
+            android:paddingTop="15dp"
+
+            android:text="Data Nascimento"
+            android:textAlignment="viewStart" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/cadastra_animal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_width="327dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="52dp"
+        android:backgroundTint="@color/verdefolha"
         android:text="Cadastrar animal"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:cornerRadius="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="350dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="40dp"
+        android:text="Cadastro de Animais"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
