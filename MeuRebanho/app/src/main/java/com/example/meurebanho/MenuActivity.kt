@@ -56,7 +56,7 @@ class MenuActivity : AppCompatActivity() {
             }
         }
         /* Configurando o layout da RecyclerView como um GridLayoutManager com 2 colunas */
-        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 2)
+        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 1)
         recyclerViewMenu!!.layoutManager = layoutManager
 
         /* Configurando o adaptador para a RecyclerView */

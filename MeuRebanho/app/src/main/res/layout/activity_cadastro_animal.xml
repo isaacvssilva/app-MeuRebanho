@@ -36,7 +36,7 @@
             android:id="@+id/cad_sexo_animal"
             android:layout_width="327dp"
             android:layout_height="54dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/style_edittext"
             android:ems="10"
             android:inputType="text"
@@ -47,7 +47,7 @@
             android:id="@+id/cad_cor_animal"
             android:layout_width="327dp"
             android:layout_height="54dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/style_edittext"
             android:ems="10"
             android:inputType="text"
@@ -58,7 +58,7 @@
             android:id="@+id/cad_raca_animal"
             android:layout_width="327dp"
             android:layout_height="54dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/style_edittext"
             android:ems="10"
             android:inputType="text"
@@ -69,20 +69,31 @@
             android:id="@+id/cad_datanasc_animal"
             android:layout_width="327dp"
             android:layout_height="54dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/style_edittext"
             android:ems="10"
             android:inputType="text"
             android:padding="8dp"
-            android:paddingTop="15dp"
+            android:paddingTop="10dp"
 
             android:text="Data Nascimento"
             android:textAlignment="viewStart" />
 
+        <EditText
+            android:id="@+id/cad_codigo_animal"
+            android:layout_width="327dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/style_edittext"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="8dp"
+            android:text="Codigo" />
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/cadastra_animal"
+        android:id="@+id/btncad_animal"
         android:layout_width="327dp"
         android:layout_height="59dp"
         android:layout_marginBottom="52dp"
