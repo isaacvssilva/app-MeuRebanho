@@ -117,8 +117,8 @@
         android:layout_width="343dp"
         android:layout_height="102dp"
         android:padding="8dp"
-        app:counterEnabled="false"
-        app:counterMaxLength="25"
+        app:counterEnabled="true"
+        app:counterMaxLength="14"
         app:helperText="Ex: 123.456.789-00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +132,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="8dp"
-            android:hint="CPF" />
+            android:hint="CPF"
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

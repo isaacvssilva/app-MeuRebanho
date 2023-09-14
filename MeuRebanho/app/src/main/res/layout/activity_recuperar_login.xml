@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecuperarLoginActivity">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputEditText_login"
+        android:layout_width="343dp"
+        android:layout_height="102dp"
+        android:backgroundTint="#83C7C7C7"
+        android:padding="8dp"
+        android:paddingLeft="15sp"
+        android:textColorHint="@color/white"
+        app:boxBackgroundColor="#83C7C7C7"
+        app:boxStrokeColor="@color/white"
+        app:counterEnabled="false"
+        app:helperText="Ex: joao@gmail.com"
+        app:helperTextTextColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/RecEmailLoginUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_email_24"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="Login"
+            android:inputType="text|textEmailAddress"
+            android:textAppearance="@style/caixaTextoEmail"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="16sp"
+            app:boxBackgroundColor="#83C7C7C7"
+            app:boxStrokeColor="@color/white"
+            app:hintTextColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_recuperar_login"
+        android:layout_width="327dp"
+        android:layout_height="59dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Enviar"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:cornerRadius="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_login"
+        app:layout_constraintVertical_bias="0.077" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
