@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.meurebanho.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -16,7 +17,8 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity() {
 
     /* lateinit -> atributo que ainda nao foi inicializado */
-    lateinit var init_cadastro: TextView
+    private lateinit var init_cadastro: TextView
+    private lateinit var rec_login: TextView
     private lateinit var email: String
     private lateinit var senha: String
 
@@ -35,16 +37,29 @@ class MainActivity : AppCompatActivity() {
         /* Recebendo o identificador do TexView referente ao texto Criar conta */
         init_cadastro = findViewById(R.id.init_cadastro)
 
+        /* Recebendo o identificador do TexView referente ao texto Esqueci minha senha */
+        rec_login = findViewById(R.id.rec_senha)
+
         /* Ao clicar no texto iniciar sessao, o usuario sera redirecionado para a tela de cadastro */
         val init_cadastro_intent = Intent(this, CadastroUsuarioActivity::class.java)
         init_cadastro.setOnClickListener {
             startActivity(init_cadastro_intent)
         }
+
+        /* Ao clicar no texto iniciar sessao, o usuario sera redirecionado para a tela de cadastro */
+        val rec_login_intent = Intent(this, RecuperarLoginActivity::class.java)
+        rec_login.setOnClickListener {
+            startActivity(rec_login_intent)
+        }
+
+
         /* Deslogando o usuario atual do aplicativo */
         firebaseAuth.signOut()
         /* Ao preencher os campos de login corretamente, o usuario acessara o menu principal */
         clickEntrar()
+
     }
+
     override fun onStart() {
         super.onStart()
         verificarUsuarioLogado()
@@ -56,7 +71,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun verificarUsuarioLogado() {
         val usuarioAtual = firebaseAuth.currentUser
-        if( usuarioAtual != null ){
+        if (usuarioAtual != null) {
             startActivity(
                 Intent(this, MenuActivity::class.java)
             )
@@ -96,14 +111,14 @@ class MainActivity : AppCompatActivity() {
         }.addOnFailureListener { erro ->
             try {
                 throw erro
-            }catch ( erroUsuarioInvalido: FirebaseAuthInvalidUserException){
+            } catch (erroUsuarioInvalido: FirebaseAuthInvalidUserException) {
                 erroUsuarioInvalido.printStackTrace()
                 Toast.makeText(
                     this,
                     "E-mail não cadastrado!",
                     Toast.LENGTH_LONG
                 ).show()
-            }catch ( erroCredenciaisInvalidas: FirebaseAuthInvalidCredentialsException){
+            } catch (erroCredenciaisInvalidas: FirebaseAuthInvalidCredentialsException) {
                 erroCredenciaisInvalidas.printStackTrace()
                 Toast.makeText(
                     this,
