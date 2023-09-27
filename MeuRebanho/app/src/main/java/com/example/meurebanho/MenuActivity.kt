@@ -2,10 +2,17 @@ package com.example.meurebanho
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meurebanho.databinding.ActivityMenuBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MenuActivity : AppCompatActivity() {
 
@@ -14,9 +21,19 @@ class MenuActivity : AppCompatActivity() {
     private var recyclerViewMenuAdapter: MenuItemAdapter? = null
     private var menuList = mutableListOf<MenuData>()
 
+    private val binding by lazy {
+        ActivityMenuBinding.inflate( layoutInflater )
+    }
+
+    private val firebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu)
+        setContentView( binding.root )
+        inicializaToolbar()
 
         /* Inicializando a lista do Menu principal */
         menuList = ArrayList()
@@ -64,6 +81,46 @@ class MenuActivity : AppCompatActivity() {
 
         /* Chamando a funcao para preparar os dados da lista do Menu*/
         prepareMenuListData()
+    }
+
+    private fun deslogarUsuario() {
+        AlertDialog.Builder(this)
+            .setTitle("Deslogar")
+            .setMessage("Deseja realmente sair?")
+            .setNegativeButton("Não"){dialog, posicao -> }
+            .setPositiveButton("Sim") { dialog, posicao ->
+                firebaseAuth.signOut()
+                startActivity(
+                    Intent(applicationContext, MainActivity::class.java)
+                )
+            }
+            .create()
+            .show()
+    }
+
+    private fun inicializaToolbar() {
+        val toolbar = binding.tbMenuPrincipal.tbPrincipal
+        setSupportActionBar( toolbar )
+        supportActionBar?.apply {
+            title = "Meu Rebanho"
+        }
+
+        addMenuProvider(
+            object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menuInflater.inflate(R.menu.menu_principal, menu)
+                }
+
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                    when( menuItem.itemId ){
+                        R.id.item_sair -> {
+                            deslogarUsuario()
+                        }
+                    }
+                    return true
+                }
+            }
+        )
     }
 
     /* Preparando os dados da lista do Menu e adicionando os itens */

@@ -17,18 +17,23 @@
             android:exported="false" />
         <activity
             android:name=".AlertasActivity"
+            android:parentActivityName=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".ConfigurarRastreadorActivity"
+            android:parentActivityName=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".RelatoriosActivity"
+            android:parentActivityName=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".LocalizarAnimalActivity"
+            android:parentActivityName=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".ConsultarAnimaisActivity"
+            android:parentActivityName=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".MenuActivity"
