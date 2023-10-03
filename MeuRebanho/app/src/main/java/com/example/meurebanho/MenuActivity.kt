@@ -52,10 +52,10 @@ class MenuActivity : AppCompatActivity() {
                     val intent = Intent(this, LocalizarAnimalActivity::class.java)
                     startActivity(intent)
                 }
-                "Consultar animais" -> {
-                    val intent = Intent(this, ConsultarAnimaisActivity::class.java)
-                    startActivity(intent)
-                }
+//                "Consultar animais" -> {
+//                    val intent = Intent(this, ConsultarAnimaisActivity::class.java)
+//                    startActivity(intent)
+//                }
                 "Relatórios" -> {
                     val intent = Intent(this, RelatoriosActivity::class.java)
                     startActivity(intent)

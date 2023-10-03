@@ -3,4 +3,37 @@
     <string name="criar_conta"><u>Criar Conta</u></string>
     <string name="inicar_sessao"><u>Iniciar sessão</u></string>
     <string name="esqueci_minha_senha"><u>Esqueci minha senha</u></string>
+    <string name="loren_ipsus"><u>O desenvolvedor que busca um código limpo e quer ganhar mais agilidade nos projetos, precisa saber o que é arquitetura MVVM, um padrão de arquitetura de aplicações. Leia o conteúdo do Dicionário Tech da Coodesh e veja os seus benefícios.
+
+Mas antes é bom lembrar que existem outros padrões de arquitetura de software, como o MVC (Model-View-Controller) e o MVP (Model-View-Presenter). Aliás, o MVVP (Model-View-ViewModel) é uma especialização do MVP adaptado para a arquitetura WPF e Silverlight.
+
+Definição
+O MVVM é um padrão de arquitetura de desenvolvimento de software baseado em Model, View e View-Model. Conheça a seguir os três principais elementos:
+
+Model: a camada de modelo é a lógica de negócios que impulsiona a aplicação;
+View: é a interface do usuário.
+ViewModel: as camadas ViewModel coordenam as operações entre a view e as camadas model, além disso, evocará operações sobre a camada Model quando for necessário.
+Tal modelo foi criado pelo arquiteto de software do WPF e Silverlight da Microsoft, John Grossman em 2005. Desde então, ele vem sendo usado principalmente no desenvolvimento mobile.
+
+Basicamente, ele foi criado para ser usado em aplicativos WPF (Windows Presentation Foundation) e usava XAML (uma linguagem declarativa para objetos e suas propriedades) a fim de separar a interface do usuário da lógica de negócios, embora aproveitando o data binding, que é a vinculação de dados.
+
+Como funciona
+Para entender o que é arquitetura MVVM é interessante compreender como é o seu funcionamento. Na verdade, são os mecanismos de binding que constróem um pattern tão eficiente como o MVVM para criar aplicações WPF e Silverlight.
+
+Na prática, a camada Model não se comunica com a View nem a View se comunica com a Model. Mas a View conhece a ViewModel e se comunica com ela pelo binding.
+
+É por isso que a camada ViewModel tem um função tão importante no fluxo. Afinal, ela disponibiliza à View uma lógica de apresentação e coordena as iterações da View com a Model, além de poder implementar a lógica de validação para garantir a consistência dos dados.
+
+Benefícios
+Entender o que é arquitetura MVVM e poder contar com os seus benefícios é muito importante para o desenvolvedor. Nesse sentido, veja alguns fatos positivos da sua utilização.
+
+é razoavelmente fácil de aprender;
+é importante para o desenvolvimento mobile;
+possibilita habilitar um estilo mais iterativo e exploratório;
+permite simplificar testes de unidades;
+dá suporte à equipe de colaboração;
+permite mais facilidade na manutenção do código.
+Além do mais, o MVVM pode ser usado em Swift, Java, Dart (através do framework Flutter) e ainda os frameworks de JavaScript.
+    </u>
+</string>
 </resources>
