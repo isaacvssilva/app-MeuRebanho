@@ -1,6 +1,9 @@
 package com.example.meurebanho.rebanhoDAO
 import android.util.Log;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.R
+import com.example.meurebanho.view.CadastroAnimalActivity
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -11,25 +14,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
-import com.example.meurebanho.MainActivity
 import com.example.meurebanho.model.Animal;
+import com.example.meurebanho.view.ConsultarAnimaisActivity
+import com.example.meurebanho.view.fragmentlist
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import java.util.Objects
+
 
 class rebanhoDAO():rebanhoDAOinterface {
 
     private lateinit var db: FirebaseFirestore;
-    var lista = ArrayList<Animal>()
+    lateinit var lista:ArrayList<Animal>
 
     companion object {
-        private lateinit var mainActivity: MainActivity
+        private lateinit var mainActivity: fragmentlist
         private var animaisDAOFirebase: rebanhoDAO? = null;
 
-        fun getInstance( mainActivity:MainActivity  ):rebanhoDAOinterface{
+        fun getInstance(mainActivity: fragmentlist):rebanhoDAOinterface{
             if( animaisDAOFirebase == null ){
                 animaisDAOFirebase = rebanhoDAO( mainActivity );
             }
@@ -37,45 +39,36 @@ class rebanhoDAO():rebanhoDAOinterface {
         }
     }
 
-    private constructor(mainactivity: MainActivity) : this() {
+    private constructor(mainactivity: fragmentlist) : this() {
         rebanhoDAO.mainActivity = mainactivity;
         lista = ArrayList();
     }
         override fun addAnimal(animal:Animal):Boolean {
-
             //mainActivity.controlProgressBar( true );
-            var user = hashMapOf<String,Any>()
+            val user = hashMapOf<String,Any>()
             user.put("nome", animal.especie);
-            user.put("nome", animal.raca);
-            user.put("nome", animal.cor);
-            user.put("nome", animal.sexo);
-            user.put("nome", animal.datanasc);
-            user.put("nome", animal.codigo);
+            user.put("raca", animal.raca);
+            user.put("cor", animal.cor);
+            user.put("sexo", animal.sexo);
+            user.put("datanasc", animal.datanasc);
+            user.put("codigo", animal.codigo);
 
             // Add a new document with a generated ID
-            db.collection("animais")
-                .add(user)
-                .addOnSuccessListener(OnSuccessListener<DocumentReference>() {
-
-                    fun onSuccess(documentReference: DocumentReference ):Unit {
-                        Log.d( "Sucess", "DocumentSnapshot added with ID: " + documentReference.id);
-
-                        animal.codigo=documentReference.id ;
+            //var documento:DocumentReference
+            db.collection("Animais")
+                .document( animal.codigo )
+                .set( user )
+                .addOnSuccessListener{
+//                        Toast.makeText( mainActivity, animal.codigo , Toast.LENGTH_LONG ).show();
                         lista.add( animal );
                         //mainActivity.notifyAdapter();
-
-                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
-                    }
-                })
-                .addOnFailureListener(OnFailureListener() {
-
-                    fun onFailure( e:Exception){
-                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
-                    }
-                });
+//                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
+                }
+                .addOnFailureListener {
+//                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
+                };
 
             //mainActivity.controlProgressBar( false );
-
             return true;
 
         }
@@ -87,7 +80,7 @@ class rebanhoDAO():rebanhoDAOinterface {
                 "datanasc", c.datanasc )
                 .addOnSuccessListener(OnSuccessListener<Void>() {
                     fun onSuccess() {
-                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
+//                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
 
                         for( animal:Animal in lista ){
 
@@ -112,7 +105,7 @@ class rebanhoDAO():rebanhoDAOinterface {
                 .addOnFailureListener(OnFailureListener() {
                     @Override
                     fun onFailure( e:Exception) {
-                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
+//                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
                         //mainActivity.notifyAdapter();
                     }
                 });
@@ -136,9 +129,9 @@ class rebanhoDAO():rebanhoDAOinterface {
 
                  var deleteanimal:DocumentReference = db.collection("Animais").document( c.codigo );
                 deleteanimal.delete().addOnSuccessListener( OnSuccessListener<Void>() {
-                    @Override
+
                     fun onSuccess() {
-                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
+//                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
 
                         var animalapagar:Animal? = null;
                         for( animal:Animal in lista ){
@@ -155,9 +148,8 @@ class rebanhoDAO():rebanhoDAOinterface {
                     }
                 })
                     .addOnFailureListener(OnFailureListener() {
-                        @Override
                         fun onFailure( e:Exception) {
-                            Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
+//                            Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
 
                         }
                     });
@@ -172,46 +164,50 @@ class rebanhoDAO():rebanhoDAOinterface {
             return null;
         }
 
-        override fun getListaanimais():ArrayList<Animal>{
+        override fun getListaanimais():ArrayList<Animal> {
 
             //mainActivity.controlProgressBar( true );
-
-            lista = ArrayList<Animal>();
-
             db.collection("Animais")
                 .get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot>() {
+                .addOnCompleteListener( OnCompleteListener {
+                    if(it.isSuccessful) {
+//                        lista = ArrayList<Animal>();
+//                        Toast.makeText(mainActivity, "dados capturados", Toast.LENGTH_SHORT).show();
+                            for (data in it.result) {
+                                val codigo = data.getString("codigo").toString();
+                                val especie: String = data.getString("nome").toString();
+                                val raca: String = data.getString("raca").toString();
+                                val cor: String = data.getString("cor").toString();
+                                val sexo: String = data.getString("sexo").toString();
+                                val datanasc: String = data.getString("datanasc").toString();
 
-                    fun onComplete(task:Task<QuerySnapshot> ) {
-                        if (task.isSuccessful) {
+                                val c: Animal = Animal(
+                                    codigo,
+                                    especie,
+                                    raca,
+                                    cor,
+                                    sexo,
+                                    datanasc,
+                                    (R.drawable.nelore)
+                                );
+                                c.codigo = data.id;
 
-                            for (document: QueryDocumentSnapshot  in task.result) {
-
-                                var codigo: String = document.getString( "codigo").toString();
-                                var especie: String = document.getString( "especie").toString();
-                                var raca: String = document.getString( "raca").toString();
-                                var cor: String = document.getString( "cor").toString();
-                                var sexo: String = document.getString( "sexo").toString();
-                                var datanasc: String = document.getString( "datanasc").toString();
-
-                                var c:Animal= Animal( codigo,especie,raca,cor,sexo,datanasc);
-                                c.codigo= document.id ;
-
-                                lista.add( c );
-
+                                lista.add(c);
                             }
+//                            Toast.makeText(
+//                                mainActivity,
+//                                lista[1].codigo.toString(),
+//                                Toast.LENGTH_SHORT
+//                            )
+//                                .show();
                         } else {
-                            Log.w("TAG", "Error getting documents.", task.getException());
-                        }
-
-                        //mainActivity.notifyAdapter();
+                            Log.e("TAG", "erro ao receber.");
                     }
-                });
-
-            //mainActivity.controlProgressBar( false );
-
-            return lista;
-
+                    mainActivity.notifyAdapter()
+                    }).addOnFailureListener{
+//                    Toast.makeText( mainActivity, it.toString(), Toast.LENGTH_SHORT ).show();
+                }
+            return lista
         }
 
     override fun deleteAll(): Boolean= false;
@@ -221,8 +217,10 @@ class rebanhoDAO():rebanhoDAOinterface {
         return true;
     }
 
-    override fun close(): Boolean= false;
+    override fun close(): Boolean=false;
     override fun isStarted(): Boolean = false;
 
 }
+
+
 

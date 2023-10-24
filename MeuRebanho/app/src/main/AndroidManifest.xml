@@ -13,39 +13,39 @@
         android:theme="@style/Theme.MeuRebanho"
         tools:targetApi="31">
         <activity
-            android:name=".RecuperarLoginActivity"
+            android:name=".view.RecuperarLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".AlertasActivity"
-            android:parentActivityName=".MenuActivity"
+            android:name=".view.AlertasActivity"
+            android:parentActivityName=".view.menuinicial.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".ConfigurarRastreadorActivity"
-            android:parentActivityName=".MenuActivity"
+            android:name=".view.ConfigurarRastreadorActivity"
+            android:parentActivityName=".view.menuinicial.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".RelatoriosActivity"
-            android:parentActivityName=".MenuActivity"
+            android:name=".view.RelatoriosActivity"
+            android:parentActivityName=".view.menuinicial.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".LocalizarAnimalActivity"
-            android:parentActivityName=".MenuActivity"
+            android:name=".view.LocalizarAnimalActivity"
+            android:parentActivityName=".view.menuinicial.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".ConsultarAnimaisActivity"
-            android:parentActivityName=".MenuActivity"
+            android:name=".view.ConsultarAnimaisActivity"
+            android:parentActivityName=".view.menuinicial.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".view.menuinicial.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".CadastroAnimalActivity"
+            android:name=".view.CadastroAnimalActivity"
             android:exported="false" />
         <activity
-            android:name=".CadastroUsuarioActivity"
+            android:name=".view.CadastroUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

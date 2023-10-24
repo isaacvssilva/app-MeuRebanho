@@ -1,10 +1,11 @@
-package com.example.meurebanho
+package com.example.meurebanho.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityCadastroUsuarioBinding
 import com.example.meurebanho.model.User
 import com.google.firebase.auth.FirebaseAuth

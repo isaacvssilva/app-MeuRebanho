@@ -1,16 +1,15 @@
-package com.example.meurebanho
+package com.example.meurebanho.view
 
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.text.set
+import com.example.meurebanho.R
 import com.example.meurebanho.model.Animal
-import com.example.meurebanho.model.User
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.meurebanho.rebanhoDAO.rebanhoDAO
+import com.example.meurebanho.rebanhoDAO.rebanhoDAOinterface
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -24,8 +23,9 @@ class CadastroAnimalActivity : AppCompatActivity() {
     private lateinit var  cor: EditText
     private lateinit var raca: EditText
     private lateinit var codigo: EditText
-    private lateinit var datanasc_animal: EditText
+    private lateinit var datanasc: EditText
     private lateinit var button_add: Button
+    private lateinit var animalDAO: rebanhoDAOinterface
 
 
     val formatDAte=SimpleDateFormat("dd/MM/yyyy",Locale.getDefault())
@@ -33,7 +33,7 @@ class CadastroAnimalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro_animal)
 
-        datanasc_animal = findViewById<EditText>(R.id.cad_datanasc_animal)
+        datanasc = findViewById<EditText>(R.id.cad_datanasc_animal)
         especie = findViewById<EditText>(R.id.cad_especie_animal)
         raca = findViewById<EditText>(R.id.cad_raca_animal)
         cor = findViewById<EditText>(R.id.cad_cor_animal)
@@ -41,7 +41,10 @@ class CadastroAnimalActivity : AppCompatActivity() {
         codigo = findViewById<EditText>(R.id.cad_codigo_animal)
         button_add = findViewById<Button>(R.id.btncad_animal)
 
-        datanasc_animal.setOnClickListener {
+        animalDAO=rebanhoDAO.getInstance(fragmentlist())
+        animalDAO.init()
+
+        datanasc.setOnClickListener {
             showDatePicker()
         }
         button_add.setOnClickListener{
@@ -61,7 +64,7 @@ class CadastroAnimalActivity : AppCompatActivity() {
                 selectedDate.set(Calendar.DAY_OF_MONTH,i3)
                 val date:String =formatDAte.format(selectedDate.time)
                 Toast.makeText(this,"Date:"+ date, Toast.LENGTH_SHORT).show()
-                datanasc_animal.setText(date)
+                datanasc.setText(date)
 
             },calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH))
             datePicker.show();
@@ -69,9 +72,9 @@ class CadastroAnimalActivity : AppCompatActivity() {
 
 
     /* Criando instancia para firestore DataBase */
-    private val firestore by lazy {
-        FirebaseFirestore.getInstance()
-    }
+//    private val firestore by lazy {
+//        FirebaseFirestore.getInstance()
+//    }
 
     /**
      * Funcao que Valida os campos de entrada do formulario de cadastro.
@@ -81,31 +84,31 @@ class CadastroAnimalActivity : AppCompatActivity() {
     private fun validarCampos(): Boolean {
 
         /* Verificando se o campo "nome" esta vazio */
-        if (especie.getText().isEmpty()) {
+        if (especie.text.isEmpty()) {
             Toast.makeText(this,"Preencha o seu nome", Toast.LENGTH_SHORT).show()
             return false
         }
         /* Verificando se o campo "email" esta vazio */
-        if (raca.getText().isEmpty()) {
+        if (raca.text.isEmpty()) {
             Toast.makeText(this,"Preencha o seu nome", Toast.LENGTH_SHORT).show()
             return false
         }
         /* Verificando se o campo "cpf" esta vazio */
-        if (cor.getText().isEmpty()) {
+        if (cor.text.isEmpty()) {
             Toast.makeText(this,"Preencha o seu nome", Toast.LENGTH_SHORT).show()
             return false
         }
         /* Verificando se o campo "telefone" esta vazio */
-        if(codigo.getText().isEmpty()){
+        if(codigo.text.isEmpty()){
             Toast.makeText(this,"Preencha o seu nome", Toast.LENGTH_SHORT).show()
             return false
         }
         /* Verificando se o campo "senha" esta vazio */
-        if (datanasc_animal.getText().isEmpty()) {
+        if (datanasc.text.isEmpty()) {
             Toast.makeText(this,"Preencha o seu nome", Toast.LENGTH_SHORT).show()
             return false
         }
-        if (sexo.getText().isEmpty()) {
+        if (sexo.text.isEmpty()) {
             Toast.makeText(this,"Preencha o seu nome", Toast.LENGTH_SHORT).show()
             return false
         }
@@ -122,13 +125,15 @@ class CadastroAnimalActivity : AppCompatActivity() {
             /* Verificando se todos os campos foram preenchidos */
             if( validarCampos() ){
                 val animal= Animal(
-                    especie.getText().toString(),
-                    raca.getText().toString(),
-                    cor.getText().toString(),
-                    sexo.getText().toString(),
-                    datanasc_animal.getText().toString(),
-                    codigo.getText().toString())
-                salvarUsuarioFirestore(animal)
+                    especie.text.toString(),
+                    raca.text.toString(),
+                    cor.text.toString(),
+                    sexo.text.toString(),
+                    datanasc.text.toString(),
+                    codigo.text.toString(),
+                            R.drawable.nelore)
+                    animalDAO.addAnimal(animal);
+                //salvarUsuarioFirestore(animal)
             }
     }
 
@@ -138,22 +143,22 @@ class CadastroAnimalActivity : AppCompatActivity() {
      *
      * @param usr O objeto User contendo os dados do usuario a serem salvos.
      */
-    private fun salvarUsuarioFirestore(animal: Animal) {
-        firestore
-            .collection("Animais")
-            .document( animal.codigo )
-            .set( animal )
-            .addOnSuccessListener {
-                /* Em caso de sucesso, exibe uma mensagem de sucesso e direciona para a tela de login */
-                Toast.makeText(applicationContext,
-                    "animal cadastrado com sucesso!",
-                    Toast.LENGTH_LONG).show()
-
-            }.addOnFailureListener {
-                /* Em caso de falha, exibe uma mensagem de erro */
-                Toast.makeText(applicationContext,
-                    "Erro ao fazer seu cadastro!",
-                    Toast.LENGTH_LONG).show()
-            }
-    }
+//    private fun salvarUsuarioFirestore(animal: Animal) {
+//        firestore
+//            .collection("Animais")
+//            .document( animal.codigo )
+//            .set( animal )
+//            .addOnSuccessListener {
+//                /* Em caso de sucesso, exibe uma mensagem de sucesso e direciona para a tela de login */
+//                Toast.makeText(applicationContext,
+//                    "animal cadastrado com sucesso!",
+//                    Toast.LENGTH_LONG).show()
+//
+//            }.addOnFailureListener {
+//                /* Em caso de falha, exibe uma mensagem de erro */
+//                Toast.makeText(applicationContext,
+//                    "Erro ao fazer seu cadastro!",
+//                    Toast.LENGTH_LONG).show()
+//            }
+    //}
 }

@@ -3,7 +3,7 @@
     <style name="Base.Theme.MeuRebanho" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/cinza_claro</item>
+        <item name="colorPrimary">@color/verdefolha</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

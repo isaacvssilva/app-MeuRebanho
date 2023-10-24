@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:orientation="horizontal"
+    app:cardCornerRadius="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/background_text_view"
+        android:orientation="horizontal"
+        android:paddingStart="14dp">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/list_img"
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeColor="@color/white"
+                app:strokeWidth="0.15dp"
+                android:scaleType="centerCrop"
+                android:padding="1dp"
+                android:src="@drawable/nelore"
+                android:layout_margin="4dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/listname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:paddingStart="8dp"
+            android:layout_marginTop="10dp"
+            android:minHeight="25dp"
+            android:paddingTop="5dp"
+            tools:text="N° 24567677HJKU" />
+        <TextView
+            android:id="@+id/listraca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="20dp"
+            android:paddingStart="15dp"
+            android:layout_marginTop="5dp"
+            tools:text="yennefer" />
+
+        <TextView
+            android:id="@+id/listcor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#258A00"
+            android:paddingStart="15dp"
+            android:minHeight="20dp"
+            tools:text="yennefer"
+            android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/listdistancia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#258A00"
+            android:minHeight="56dp"
+            android:padding="14dp"
+            android:textSize="20sp"
+            tools:text="8km" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+

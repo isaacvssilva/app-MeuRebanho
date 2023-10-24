@@ -1,4 +1,4 @@
-package com.example.meurebanho
+package com.example.meurebanho.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package com.example.meurebanho
+package com.example.meurebanho.view.menuinicial
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meurebanho.view.AlertasActivity
+import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityMenuBinding
+import com.example.meurebanho.view.CadastroAnimalActivity
+import com.example.meurebanho.view.ConfigurarRastreadorActivity
+import com.example.meurebanho.view.ConsultarAnimaisActivity
+import com.example.meurebanho.view.LocalizarAnimalActivity
+import com.example.meurebanho.view.MainActivity
+import com.example.meurebanho.view.RelatoriosActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MenuActivity : AppCompatActivity() {
@@ -52,10 +60,10 @@ class MenuActivity : AppCompatActivity() {
                     val intent = Intent(this, LocalizarAnimalActivity::class.java)
                     startActivity(intent)
                 }
-//                "Consultar animais" -> {
-//                    val intent = Intent(this, ConsultarAnimaisActivity::class.java)
-//                    startActivity(intent)
-//                }
+                "Consultar animais" -> {
+                    val intent = Intent(this, ConsultarAnimaisActivity::class.java)
+                    startActivity(intent)
+                }
                 "Relatórios" -> {
                     val intent = Intent(this, RelatoriosActivity::class.java)
                     startActivity(intent)
@@ -72,7 +80,7 @@ class MenuActivity : AppCompatActivity() {
                 }
             }
         }
-        /* Configurando o layout da RecyclerView como um GridLayoutManager com 2 colunas */
+        /* Configurando o layout da RecyclerView como um GridLayoutManager com 1 coluna */
         val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 1)
         recyclerViewMenu!!.layoutManager = layoutManager
 

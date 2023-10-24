@@ -1,4 +1,4 @@
-package com.example.meurebanho
+package com.example.meurebanho.view.menuinicial
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meurebanho.R
 
 /* ViewHolder -> usado para gerenciar a posicao das listas */
 //class MenuItemAdapter : RecyclerView.Adapter<MenuItemAdapter.MenuItemAdapterViewHolder>() {
@@ -62,7 +63,7 @@ class MenuItemAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MenuItemAdapter.MyViewHolder {
+    ): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_menu, parent, false)
         return MyViewHolder(view)

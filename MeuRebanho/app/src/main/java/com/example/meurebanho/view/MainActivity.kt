@@ -1,18 +1,16 @@
-package com.example.meurebanho
+package com.example.meurebanho.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Binding
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
+import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityMainBinding
+import com.example.meurebanho.view.menuinicial.MenuActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
