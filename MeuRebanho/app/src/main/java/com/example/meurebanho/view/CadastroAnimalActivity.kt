@@ -10,6 +10,7 @@ import com.example.meurebanho.R
 import com.example.meurebanho.model.Animal
 import com.example.meurebanho.rebanhoDAO.rebanhoDAO
 import com.example.meurebanho.rebanhoDAO.rebanhoDAOinterface
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -134,9 +135,29 @@ class CadastroAnimalActivity : AppCompatActivity() {
                             R.drawable.nelore)
                     animalDAO.addAnimal(animal);
                 //salvarUsuarioFirestore(animal)
+                /* criando nó no Firebase Realtime Database */
+                nodeFilhoAnimalRTDB(codigo.text.toString())
             }
     }
+    /**
+     * Funcao que cria um novo nó filho no Real-Time Database com o identificador
+     * de cadastro do animal.
+     *
+     * Este no filho é associado ao no "Animal" no Firebase Realtime Database.
+     *
+     * @param animalId O identificador de cadastro do animal que sera usado como parte do caminho no no.
+     */
+    private fun nodeFilhoAnimalRTDB(animalId: String) {
+        /* Obtendo uma referencia ao no "Animal" no Firebase Realtime Database */
+        val database = FirebaseDatabase.getInstance()
+        val animalRef = database.getReference("Animal/$animalId/")
 
+        /* Criando um novo no com o ID do animal como chave */
+        val novoAnimalRef = animalRef.child("GPS")
+
+        /* Adicionando os dados ao novo nó */
+        novoAnimalRef.setValue("")
+    }
 
     /**
      * Salva os dados do usuario no banco de dados Firestore.
