@@ -171,7 +171,6 @@ class rebanhoDAO():rebanhoDAOinterface {
                 .get()
                 .addOnCompleteListener( OnCompleteListener {
                     if(it.isSuccessful) {
-//                        lista = ArrayList<Animal>();
 //                        Toast.makeText(mainActivity, "dados capturados", Toast.LENGTH_SHORT).show();
                             for (data in it.result) {
                                 val codigo = data.getString("codigo").toString();
@@ -194,12 +193,6 @@ class rebanhoDAO():rebanhoDAOinterface {
 
                                 lista.add(c);
                             }
-//                            Toast.makeText(
-//                                mainActivity,
-//                                lista[1].codigo.toString(),
-//                                Toast.LENGTH_SHORT
-//                            )
-//                                .show();
                         } else {
                             Log.e("TAG", "erro ao receber.");
                     }

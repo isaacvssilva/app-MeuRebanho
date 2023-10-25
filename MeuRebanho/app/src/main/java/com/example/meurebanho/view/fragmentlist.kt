@@ -2,6 +2,7 @@ package com.example.meurebanho.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,20 +43,13 @@ class fragmentlist : Fragment(){
         val activity =activity as Context
         val recyclerView=view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager=LinearLayoutManager(activity)
-//        if(!animais.isEmpty())
-//            animais.clear()
+        if(!animais.isEmpty())
+            animais.clear()
         animalDAO= rebanhoDAO.getInstance(this)
 
         animalDAO.init()
 
         animais = animalDAO.getListaanimais()
-
-//        animais.add(Animal("gislsnnnsf","gislsnnnsf","gislsnnnsf","gislsnnnsf","gislsnnnsf","377huehu",(R.drawable.nelore)))
-//        animais.add(Animal("gislsnnnsf","gislsnnnsf","gislsnnnsf","gislsnnnsf","gislsnnnsf","gislsnnndjej56sf",(R.drawable.nelore)))
-//        animais.add(Animal("gislsnnnsf","gislsnnnsf","gislsnnnsf","gislsnnnsf","gislsnnnsf","gisls56767nnnsf",(R.drawable.nelore)))
-
-        if(!animais.isEmpty())
-            animais.clear()
 
         adapterani=FragmentListAdapter()
 
@@ -80,7 +74,6 @@ class fragmentlist : Fragment(){
                 LayoutInflater.from(context).inflate(R.layout.item_list,parent,false)
             )
         override fun onBindViewHolder(holder: myViewHolder, position: Int) {
-            //animais= animalDAO.getListaanimais()
             val animal= animais[position]
             holder.bind(animal)
             holder.itemView.setOnClickListener{
@@ -109,7 +102,7 @@ class fragmentlist : Fragment(){
         fun onSelected(character: Animal)
     }
     fun notifyAdapter() {
-        Toast.makeText(activity,"deu bom",Toast.LENGTH_LONG).show()
+        Log.d("tamlist",adapterani.itemCount.toString())
         adapterani.notifyDataSetChanged()
     }
 

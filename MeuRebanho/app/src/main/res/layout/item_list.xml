@@ -35,7 +35,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="240dp"
+            android:layout_width="180dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -68,16 +68,51 @@
             tools:text="yennefer"
             android:layout_marginTop="2dp"/>
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <TextView
             android:id="@+id/listdistancia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#258A00"
-            android:minHeight="56dp"
-            android:padding="14dp"
+            android:paddingEnd="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="12dp"
+            android:gravity="right"
             android:textSize="20sp"
             tools:text="8km" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+                <ImageButton
+                    android:id="@+id/button_edit"
+                    style="@style/Widget.AppCompat.ImageButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="5dp"
+                    android:backgroundTint="@color/verdefolha"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_edit_animal_foreground"
+                    />
+
+                <ImageButton
+                    android:id="@+id/button_delete"
+                    style="@style/Widget.AppCompat.ImageButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="18dp"
+                    android:scaleType="centerCrop"
+                    android:padding="5dp"
+                    android:contentDescription="botao de delete"
+                    android:backgroundTint="@color/verdefolha"
+                    android:src="@drawable/ic_delete_animal_foreground" />
+
+            </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
 
