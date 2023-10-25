@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- Always include this permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,28 +17,32 @@
         android:theme="@style/Theme.MeuRebanho"
         tools:targetApi="31">
         <activity
+            android:name=".view.LocalizaMapsActivity"
+            android:exported="false"
+            android:parentActivityName=".view.LocalizarAnimalActivity"/>
+        <activity
             android:name=".view.RecuperarLoginActivity"
             android:exported="false" />
         <activity
             android:name=".view.AlertasActivity"
-            android:parentActivityName=".view.menuinicial.MenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity
             android:name=".view.ConfigurarRastreadorActivity"
-            android:parentActivityName=".view.menuinicial.MenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity
             android:name=".view.RelatoriosActivity"
-            android:parentActivityName=".view.menuinicial.MenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity
             android:name=".view.LocalizarAnimalActivity"
-            android:parentActivityName=".view.menuinicial.MenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity
             android:name=".view.ConsultarAnimaisActivity"
-            android:parentActivityName=".view.menuinicial.MenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity
             android:name=".view.menuinicial.MenuActivity"
             android:exported="false" />
@@ -57,6 +65,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
     </application>
 
 </manifest>

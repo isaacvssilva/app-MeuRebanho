@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/map"
+    tools:context=".view.LocalizaMapsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/coord_usuario"-->
+        <!--            android:layout_width="134dp"-->
+        <!--            android:layout_height="22dp"-->
+        <!--            android:layout_marginEnd="56dp"-->
+        <!--            android:layout_marginBottom="15dp"-->
+        <!--            android:textSize="10sp"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/coord_animal"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/textView2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginBottom="22dp"-->
+        <!--            android:text="Posicao Usuario:"-->
+        <!--            android:textSize="12sp"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/textView"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/coord_usuario"-->
+        <!--            app:layout_constraintHorizontal_bias="0.527"-->
+        <!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/textView"-->
+        <!--            android:layout_width="91dp"-->
+        <!--            android:layout_height="17dp"-->
+        <!--            android:layout_marginStart="68dp"-->
+        <!--            android:layout_marginBottom="22dp"-->
+        <!--            android:text="Posicao Animal:"-->
+        <!--            android:textSize="12sp"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/id_distancia"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/coord_animal"-->
+        <!--            app:layout_constraintHorizontal_bias="0.0"-->
+        <!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/coord_animal"-->
+        <!--            android:layout_width="134dp"-->
+        <!--            android:layout_height="22dp"-->
+        <!--            android:layout_marginEnd="56dp"-->
+        <!--            android:layout_marginBottom="15dp"-->
+        <!--            android:textSize="10sp"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/id_distancia1"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+        <TextView
+            android:id="@+id/id_distancia1"
+            android:layout_width="134dp"
+            android:layout_height="22dp"
+            android:layout_marginBottom="44dp"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.638"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/id_distancia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:text="Distancia:"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.221"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <fragment
+            android:id="@+id/map_fragment"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="560dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_maps">
+
+        </fragment>
+
+        <include
+            android:id="@+id/tb_maps"
+            layout="@layout/toolbar_principal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
