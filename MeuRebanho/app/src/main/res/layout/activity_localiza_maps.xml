@@ -59,37 +59,19 @@
         <!--            app:layout_constraintBottom_toTopOf="@+id/id_distancia1"-->
         <!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
-        <TextView
-            android:id="@+id/id_distancia1"
-            android:layout_width="134dp"
-            android:layout_height="22dp"
-            android:layout_marginBottom="44dp"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.638"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/id_distancia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
-            android:text="Distancia:"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.221"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <fragment
             android:id="@+id/map_fragment"
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="560dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="63dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tb_maps">
+            app:layout_constraintTop_toBottomOf="@+id/tb_maps"
+            app:layout_constraintVertical_bias="0.066">
 
         </fragment>
 

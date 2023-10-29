@@ -16,29 +16,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/idSV"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_marginTop="8dp"
         android:iconifiedByDefault="false"
         android:padding="4dp"
         android:queryHint="Informe o ID do animal"
+        app:layout_constraintBottom_toTopOf="@+id/LocRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tb_localiza_animal" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tb_localiza_animal"
+        app:layout_constraintVertical_bias="0.109" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/LocRecyclerView"
-        android:layout_width="354dp"
+        android:layout_width="match_parent"
         android:layout_height="420dp"
+        android:layout_marginTop="120dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSV"
+        app:layout_constraintTop_toBottomOf="@+id/tb_localiza_animal"
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_localiza_animal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

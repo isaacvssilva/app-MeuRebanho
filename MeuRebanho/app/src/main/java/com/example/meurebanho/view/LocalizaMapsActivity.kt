@@ -2,6 +2,7 @@ package com.example.meurebanho.view
 
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.meurebanho.R
@@ -13,6 +14,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.FirebaseDatabase
 
 class LocalizaMapsActivity : AppCompatActivity() {
 
@@ -25,7 +27,6 @@ class LocalizaMapsActivity : AppCompatActivity() {
 
     private var posAtualLat: Double = 0.0
     private var posAtualLon: Double = 0.0
-    private var atualizacaoContinua = true
 
     /* Referencia ao cliente de provedor de localização fundida
   * usado para acessar a localizacao do dispositivo */
@@ -48,9 +49,17 @@ class LocalizaMapsActivity : AppCompatActivity() {
         /* Inicializando ToolBar para a interface de maps */
         inicializaToolbar()
 
+
         /* Inicialiando funcao que captura a posicao do usuario */
         posicaoAtualUsuario()
 
+        /* recebendo dados do search view com o id do animal */
+        val bundle = intent.extras
+        if (bundle != null) {
+            val id = bundle.getString("id")
+            /* Inicialiando funcao que captura a posicao do animal */
+            posicaoAtualAnimal(id.toString())
+        }
     }
 
     private fun inicializaToolbar() {
@@ -118,14 +127,12 @@ class LocalizaMapsActivity : AppCompatActivity() {
         }
         /* Pegando as coordenadas da posicao atual do usuario */
         val localizacao = fusedLocationClient.lastLocation
-        localizacao.addOnSuccessListener {
+        localizacao.addOnSuccessListener { it ->
             if (it != null) {
                 googleMap?.uiSettings?.isCompassEnabled = true
                 googleMap?.uiSettings?.isZoomControlsEnabled = true
                 googleMap?.isMyLocationEnabled = true
-                //googleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
-                /* TextView para Debug com as coordenadas do usuario */
-                val texLat = it.latitude.toString() + "," + it.longitude.toString()
+                googleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
 
 
                 /* Atualizando marcador para a nova posicao */
@@ -134,6 +141,49 @@ class LocalizaMapsActivity : AppCompatActivity() {
                 posAtualLon = origem.longitude
                 googleMap?.let { addMarkers(it) }
             }
+        }
+    }
+
+    /* Funcao que coleta as coordenadas da posicao do animal consultando o Firebase */
+    private fun posicaoAtualAnimal(animalId: String) {
+        /* Obtendo referencia ao no "Animal" via Firebase Realtime Database */
+        val database = FirebaseDatabase.getInstance().getReference("Animal/$animalId")
+
+        /* Obtendo valor do no "GPS" via Firebase Realtime Database */
+        database.child("GPS").get().addOnSuccessListener { gpsSnapshot ->
+            if (gpsSnapshot.exists()) {
+                /* Pegando a string referente as coordenadas da posicao atual do animal */
+                val gps: String = gpsSnapshot.value.toString()
+
+                /* Dividindo a string nas coordenadas de latitude e longitude */
+                val coordenadas = gps.split(",")
+
+                if (coordenadas.size == 2) {
+                    val latitude = coordenadas[0].toDoubleOrNull()
+                    val longitude = coordenadas[1].toDoubleOrNull()
+
+                    if (latitude != null && longitude != null) {
+
+                        /* Atualizando a posicao de destino */
+                        destino =
+                            LatLng(latitude.toString().toDouble(), longitude.toString().toDouble())
+
+                        /* Atualizando marcador para a nova posicao */
+                        googleMap?.let { addMarkers(it) }
+
+                    } else {
+                        Toast.makeText(this, "Coordenadas inválidas", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Formato de coordenadas inválido", Toast.LENGTH_LONG)
+                        .show()
+                }
+            } else {
+                Toast.makeText(this, "Path Animal/$animalId/GPS não existe", Toast.LENGTH_LONG)
+                    .show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "FAILED", Toast.LENGTH_LONG).show()
         }
     }
 }
