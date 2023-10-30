@@ -1,9 +1,9 @@
 package com.example.meurebanho.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.meurebanho.databinding.ActivityRecuperarLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,6 +21,7 @@ class RecuperarLoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        inicializaToolbar()
         clickRecuperar()
     }
 
@@ -29,6 +30,15 @@ class RecuperarLoginActivity : AppCompatActivity() {
             if( validarCampos() ){
                 RecuperarLogin()
             }
+        }
+    }
+
+    private fun inicializaToolbar() {
+        val toolbar = binding.tbRecLogin.tbPrincipal
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            title = "Recuperar Login"
+            setDisplayHomeAsUpEnabled(true)
         }
     }
     private fun validarCampos(): Boolean {

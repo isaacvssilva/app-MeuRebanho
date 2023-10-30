@@ -2,6 +2,8 @@ package com.example.meurebanho.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +28,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
     private lateinit var nome: String
     private lateinit var email: String
     private lateinit var cpf: String
-    private  var telefone = 0
+    private var telefone = 0
     private lateinit var senha: String
 
     /* Criando instancia para o Firebase Authentication */
@@ -38,6 +40,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
     private val firestore by lazy {
         FirebaseFirestore.getInstance()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -50,9 +53,81 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         init_sessao.setOnClickListener {
             startActivity(init_login_intent)
         }
+
+        /*
+        * Adicionando um TextWatcher para formatação automática do CPF enquanto o usuário digita.
+        */
+        val cpfEditText = binding.cadastroCpfUsuario
+        cpfEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                /* Obtendo o texto atual do campo */
+                val text = s.toString()
+
+                /* Formatando o CPF com a função formatarCPF */
+                val formatted = formatarCPF(text)
+
+                /* Verificando se o texto formatado é diferente do texto original */
+                if (text != formatted) {
+                    /* Removendo temporariamente o TextWatcher para evitar recursão infinita */
+                    cpfEditText.removeTextChangedListener(this)
+
+                    /* Definindo o texto formatado no campo de CPF */
+                    cpfEditText.setText(formatted)
+
+                    /* Movendo o cursor para o final do texto formatado */
+                    cpfEditText.setSelection(formatted.length)
+
+                    /* Adicionando o TextWatcher de volta */
+                    cpfEditText.addTextChangedListener(this)
+                }
+            }
+        })
+
         /* Ao preencher os campos de cadastro corretamente, o usuario sera cadastrado */
         clickCadastrar()
     }
+
+    /**
+     * Formata um número de CPF adicionando pontos e traço nos locais apropriados.
+     *
+     * @param cpf O número de CPF a ser formatado.
+     * @return O número de CPF formatado no formato "###.###.###-##".
+     */
+    fun formatarCPF(cpf: String): String {
+        /* Máscara de formatação desejada para o CPF */
+        val mask = "###.###.###-##"
+
+        /* Remove todos os caracteres não numéricos do CPF */
+        val onlyNumbers = cpf.replace("\\D+".toRegex(), "")
+
+        /* Inicializa uma string formatada */
+        val formatted = StringBuilder()
+
+        /* Inicializa um índice para percorrer a máscara */
+        var index = 0
+
+        /* Percorre a máscara de formatação e substitui "#" pelos números do CPF */
+        for (char in mask) {
+            if (char == '#') {
+                if (index < onlyNumbers.length) {
+                    formatted.append(onlyNumbers[index])
+                    index++
+                } else {
+                    break
+                }
+            } else {
+                formatted.append(char)
+            }
+        }
+
+        /* Retorna o CPF formatado */
+        return formatted.toString()
+    }
+
 
     /**
      * Funcao que Valida os campos de entrada do formulario de cadastro.
@@ -78,13 +153,14 @@ class CadastroUsuarioActivity : AppCompatActivity() {
             binding.cadastroEmailUsuario.error = "Preencha o seu e-mail."
             return false
         }
-        /* Verificando se o campo "cpf" esta vazio */
-        if (cpf.isEmpty()) {
-            binding.cadastroCpfUsuario.error = "Preencha o seu CPF."
+        /* Verificando se o campo "cpf" esta vazio ou possui a quantidade incorreta de dígitos */
+        val cpfDigitsOnly = cpf.replace("\\D+".toRegex(), "")
+        if (cpfDigitsOnly.isEmpty() || cpfDigitsOnly.length != 11) {
+            binding.cadastroCpfUsuario.error = "CPF inválido."
             return false
         }
         /* Verificando se o campo "telefone" esta vazio */
-        if(telefone.equals(null)){
+        if (telefone.equals(null)) {
             binding.cadastroTelefoneUsuario.error = "Preencha o seu Telefone."
         }
         /* Verificando se o campo "senha" esta vazio */
@@ -104,7 +180,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
     private fun clickCadastrar() {
         binding.bntCadastroUsuario.setOnClickListener {
             /* Verificando se todos os campos foram preenchidos */
-            if( validarCampos() ){
+            if (validarCampos()) {
                 cadastrarUsuario(nome, email, cpf, telefone, senha)
             }
         }
@@ -120,39 +196,45 @@ class CadastroUsuarioActivity : AppCompatActivity() {
      * @param telefone O numero de telefone do usuario.
      * @param senha A senha escolhida pelo usuario.
      */
-    private fun cadastrarUsuario(nome: String, email: String, cpf: String, telefone: Int, senha: String) {
+    private fun cadastrarUsuario(
+        nome: String,
+        email: String,
+        cpf: String,
+        telefone: Int,
+        senha: String
+    ) {
 
         firebaseAuth.createUserWithEmailAndPassword(
             email, senha
-        ).addOnCompleteListener{ resultado ->
-            if(resultado.isSuccessful){
+        ).addOnCompleteListener { resultado ->
+            if (resultado.isSuccessful) {
                 /* Salvando dados informados no Banco de dados */
                 val idUsuario = resultado.result.user?.uid
-                if(idUsuario != null){
+                if (idUsuario != null) {
                     val usr = User(
                         nome, email, cpf, telefone
                     )
                     salvarUsuarioFirestore(usr)
                 }
             }
-        }.addOnFailureListener{ erro ->
+        }.addOnFailureListener { erro ->
             try {
                 throw erro
-            }catch (erroSenhaFraca: FirebaseAuthWeakPasswordException) {
+            } catch (erroSenhaFraca: FirebaseAuthWeakPasswordException) {
                 erroSenhaFraca.printStackTrace()
                 Toast.makeText(
                     applicationContext,
                     "Senha Fraca. Digite letras, números e caracteres especiais.",
                     Toast.LENGTH_LONG
                 ).show()
-            }catch (erroUsuarioExistente: FirebaseAuthUserCollisionException) {
+            } catch (erroUsuarioExistente: FirebaseAuthUserCollisionException) {
                 erroUsuarioExistente.printStackTrace()
                 Toast.makeText(
                     applicationContext,
                     "E-mail já cadastrado.",
                     Toast.LENGTH_LONG
                 ).show()
-            }catch (erroCredenciaisInvalidas: FirebaseAuthInvalidCredentialsException) {
+            } catch (erroCredenciaisInvalidas: FirebaseAuthInvalidCredentialsException) {
                 erroCredenciaisInvalidas.printStackTrace()
                 Toast.makeText(
                     applicationContext,
@@ -171,13 +253,15 @@ class CadastroUsuarioActivity : AppCompatActivity() {
     private fun salvarUsuarioFirestore(usr: User) {
         firestore
             .collection("usuarios")
-            .document( usr.cpfUser )
-            .set( usr )
+            .document(usr.cpfUser)
+            .set(usr)
             .addOnSuccessListener {
                 /* Em caso de sucesso, exibe uma mensagem de sucesso e direciona para a tela de login */
-                Toast.makeText(applicationContext,
+                Toast.makeText(
+                    applicationContext,
                     "Usuário cadastrado com sucesso!",
-                    Toast.LENGTH_LONG).show()
+                    Toast.LENGTH_LONG
+                ).show()
 
                 /* Enviando usuario para tela de login */
                 startActivity(
@@ -185,9 +269,11 @@ class CadastroUsuarioActivity : AppCompatActivity() {
                 )
             }.addOnFailureListener {
                 /* Em caso de falha, exibe uma mensagem de erro */
-                Toast.makeText(applicationContext,
+                Toast.makeText(
+                    applicationContext,
                     "Erro ao fazer seu cadastro!",
-                    Toast.LENGTH_LONG).show()
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 }

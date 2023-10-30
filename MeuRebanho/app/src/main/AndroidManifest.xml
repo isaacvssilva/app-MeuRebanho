@@ -22,7 +22,8 @@
             android:parentActivityName=".view.LocalizarAnimalActivity"/>
         <activity
             android:name=".view.RecuperarLoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.MainActivity"/>
         <activity
             android:name=".view.AlertasActivity"
             android:exported="false"

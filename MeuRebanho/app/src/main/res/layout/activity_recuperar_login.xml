@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".view.RecuperarLoginActivity">
 
+    <include
+        android:id="@+id/tb_rec_login"
+        layout="@layout/toolbar_principal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TextInputEditText_login"
@@ -50,7 +60,7 @@
         android:id="@+id/btn_recuperar_login"
         android:layout_width="327dp"
         android:layout_height="59dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:backgroundTint="@color/verdefolha"
         android:fontFamily="@font/roboto_medium"
         android:text="Enviar"
         android:textColor="@color/white"

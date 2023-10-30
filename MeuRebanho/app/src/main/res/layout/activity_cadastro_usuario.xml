@@ -142,7 +142,7 @@
         android:layout_width="142dp"
         android:layout_height="54dp"
         android:text="Cadastrar"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:backgroundTint="@color/verdefolha"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
