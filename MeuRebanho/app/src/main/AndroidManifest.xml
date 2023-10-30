@@ -48,7 +48,8 @@
             android:exported="false" />
         <activity
             android:name=".view.CadastroAnimalActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.menuinicial.MenuActivity"/>
         <activity
             android:name=".view.CadastroUsuarioActivity"
             android:exported="false" />
