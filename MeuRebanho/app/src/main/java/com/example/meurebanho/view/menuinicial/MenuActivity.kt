@@ -119,19 +119,16 @@ class MenuActivity : AppCompatActivity() {
     private fun dadosUsuario() {
         val idUsuario = firebaseAuth.currentUser?.uid
         if (idUsuario != null) {
-            bancoDados
-                .collection("usuarios")
-                .document(idUsuario)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
 
-                    val dadosUsuarios = documentSnapshot.data
-                    if (dadosUsuarios != null) {
+            val refUsuario = bancoDados.collection("usuarios").document(idUsuario)
 
-                        val nome = dadosUsuarios["nomeUser"]
-                        binding.userTv.setText("Olá, " + nome.toString())
-                    }
+            refUsuario.addSnapshotListener { valor, erro ->
+                val dados = valor?.data
+                if (dados != null) {
+                    val nome = dados["nomeUser"]
+                    binding.userTv.setText("Olá, " + nome.toString())
                 }
+            }
         }
     }
 
@@ -142,10 +139,11 @@ class MenuActivity : AppCompatActivity() {
             .setNegativeButton("Não") { dialog, posicao -> }
             .setPositiveButton("Sim") { dialog, posicao ->
                 firebaseAuth.signOut()
-                startActivity(
-                    Intent(applicationContext, MainActivity::class.java)
-                )
-                finish()
+                /* Encerrando todas as atividades e indo para a MainActivity */
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
             }
             .create()
             .show()
