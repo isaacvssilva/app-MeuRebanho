@@ -6,21 +6,24 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.meurebanho.view.AlertasActivity
 import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityMenuBinding
+import com.example.meurebanho.view.AlertasActivity
 import com.example.meurebanho.view.CadastroAnimalActivity
 import com.example.meurebanho.view.ConfigurarRastreadorActivity
 import com.example.meurebanho.view.ConsultarAnimaisActivity
 import com.example.meurebanho.view.LocalizarAnimalActivity
 import com.example.meurebanho.view.MainActivity
+import com.example.meurebanho.view.PerfilUsuarioActivity
 import com.example.meurebanho.view.RelatoriosActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MenuActivity : AppCompatActivity() {
 
@@ -28,19 +31,30 @@ class MenuActivity : AppCompatActivity() {
     private var recyclerViewMenu: RecyclerView? = null
     private var recyclerViewMenuAdapter: MenuItemAdapter? = null
     private var menuList = mutableListOf<MenuData>()
+    private lateinit var perfilUsr: ImageButton
 
     private val binding by lazy {
-        ActivityMenuBinding.inflate( layoutInflater )
+        ActivityMenuBinding.inflate(layoutInflater)
     }
 
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
 
+    private val bancoDados by lazy {
+        FirebaseFirestore.getInstance()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView( binding.root )
+        setContentView(binding.root)
+
+        perfilUsr = findViewById(R.id.icon_usuario)
+        perfilUsr.setOnClickListener {
+            val intent = Intent(this, PerfilUsuarioActivity::class.java)
+            startActivity(intent)
+        }
         inicializaToolbar()
 
         /* Inicializando a lista do Menu principal */
@@ -56,26 +70,32 @@ class MenuActivity : AppCompatActivity() {
                     val intent = Intent(this, CadastroAnimalActivity::class.java)
                     startActivity(intent)
                 }
+
                 "Localizar animal" -> {
                     val intent = Intent(this, LocalizarAnimalActivity::class.java)
                     startActivity(intent)
                 }
+
                 "Consultar animais" -> {
                     val intent = Intent(this, ConsultarAnimaisActivity::class.java)
                     startActivity(intent)
                 }
+
                 "Relatórios" -> {
                     val intent = Intent(this, RelatoriosActivity::class.java)
                     startActivity(intent)
                 }
+
                 "Alertas" -> {
                     val intent = Intent(this, AlertasActivity::class.java)
                     startActivity(intent)
                 }
+
                 "Config. rastreador" -> {
                     val intent = Intent(this, ConfigurarRastreadorActivity::class.java)
                     startActivity(intent)
                 }
+
                 else -> {
                 }
             }
@@ -91,16 +111,41 @@ class MenuActivity : AppCompatActivity() {
         prepareMenuListData()
     }
 
+    override fun onStart() {
+        super.onStart()
+        dadosUsuario()
+    }
+
+    private fun dadosUsuario() {
+        val idUsuario = firebaseAuth.currentUser?.uid
+        if (idUsuario != null) {
+            bancoDados
+                .collection("usuarios")
+                .document(idUsuario)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+
+                    val dadosUsuarios = documentSnapshot.data
+                    if (dadosUsuarios != null) {
+
+                        val nome = dadosUsuarios["nomeUser"]
+                        binding.userTv.setText("Olá, " + nome.toString())
+                    }
+                }
+        }
+    }
+
     private fun deslogarUsuario() {
         AlertDialog.Builder(this)
             .setTitle("Deslogar")
             .setMessage("Deseja realmente sair?")
-            .setNegativeButton("Não"){dialog, posicao -> }
+            .setNegativeButton("Não") { dialog, posicao -> }
             .setPositiveButton("Sim") { dialog, posicao ->
                 firebaseAuth.signOut()
                 startActivity(
                     Intent(applicationContext, MainActivity::class.java)
                 )
+                finish()
             }
             .create()
             .show()
@@ -108,7 +153,7 @@ class MenuActivity : AppCompatActivity() {
 
     private fun inicializaToolbar() {
         val toolbar = binding.tbMenuPrincipal.tbPrincipal
-        setSupportActionBar( toolbar )
+        setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Meu Rebanho"
         }
@@ -120,7 +165,7 @@ class MenuActivity : AppCompatActivity() {
                 }
 
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                    when( menuItem.itemId ){
+                    when (menuItem.itemId) {
                         R.id.item_sair -> {
                             deslogarUsuario()
                         }

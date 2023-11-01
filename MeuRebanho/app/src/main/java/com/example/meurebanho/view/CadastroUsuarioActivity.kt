@@ -2,8 +2,6 @@ package com.example.meurebanho.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -54,38 +52,38 @@ class CadastroUsuarioActivity : AppCompatActivity() {
             startActivity(init_login_intent)
         }
 
-        /*
-        * Adicionando um TextWatcher para formatação automática do CPF enquanto o usuário digita.
-        */
-        val cpfEditText = binding.cadastroCpfUsuario
-        cpfEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable?) {
-                /* Obtendo o texto atual do campo */
-                val text = s.toString()
-
-                /* Formatando o CPF com a função formatarCPF */
-                val formatted = formatarCPF(text)
-
-                /* Verificando se o texto formatado é diferente do texto original */
-                if (text != formatted) {
-                    /* Removendo temporariamente o TextWatcher para evitar recursão infinita */
-                    cpfEditText.removeTextChangedListener(this)
-
-                    /* Definindo o texto formatado no campo de CPF */
-                    cpfEditText.setText(formatted)
-
-                    /* Movendo o cursor para o final do texto formatado */
-                    cpfEditText.setSelection(formatted.length)
-
-                    /* Adicionando o TextWatcher de volta */
-                    cpfEditText.addTextChangedListener(this)
-                }
-            }
-        })
+//        /*
+//        * Adicionando um TextWatcher para formatação automática do CPF enquanto o usuário digita.
+//        */
+//        val cpfEditText = binding.cadastroCpfUsuario
+//        cpfEditText.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+//
+//            override fun afterTextChanged(s: Editable?) {
+//                /* Obtendo o texto atual do campo */
+//                val text = s.toString()
+//
+//                /* Formatando o CPF com a função formatarCPF */
+//                val formatted = formatarCPF(text)
+//
+//                /* Verificando se o texto formatado é diferente do texto original */
+//                if (text != formatted) {
+//                    /* Removendo temporariamente o TextWatcher para evitar recursão infinita */
+//                    cpfEditText.removeTextChangedListener(this)
+//
+//                    /* Definindo o texto formatado no campo de CPF */
+//                    cpfEditText.setText(formatted)
+//
+//                    /* Movendo o cursor para o final do texto formatado */
+//                    cpfEditText.setSelection(formatted.length)
+//
+//                    /* Adicionando o TextWatcher de volta */
+//                    cpfEditText.addTextChangedListener(this)
+//                }
+//            }
+//        })
 
         /* Ao preencher os campos de cadastro corretamente, o usuario sera cadastrado */
         clickCadastrar()
@@ -139,7 +137,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         /* Obtendo os valores dos campos de cadastro */
         nome = binding.cadastroNomeUsuario.text.toString()
         email = binding.cadastroEmailUsuario.text.toString()
-        cpf = binding.cadastroCpfUsuario.text.toString()
+        //cpf = binding.cadastroCpfUsuario.text.toString()
         telefone = binding.cadastroTelefoneUsuario.text.toString().toInt()
         senha = binding.cadastroSenhaUsuario.text.toString()
 
@@ -153,12 +151,12 @@ class CadastroUsuarioActivity : AppCompatActivity() {
             binding.cadastroEmailUsuario.error = "Preencha o seu e-mail."
             return false
         }
-        /* Verificando se o campo "cpf" esta vazio ou possui a quantidade incorreta de dígitos */
-        val cpfDigitsOnly = cpf.replace("\\D+".toRegex(), "")
-        if (cpfDigitsOnly.isEmpty() || cpfDigitsOnly.length != 11) {
-            binding.cadastroCpfUsuario.error = "CPF inválido."
-            return false
-        }
+//        /* Verificando se o campo "cpf" esta vazio ou possui a quantidade incorreta de dígitos */
+//        val cpfDigitsOnly = cpf.replace("\\D+".toRegex(), "")
+//        if (cpfDigitsOnly.isEmpty() || cpfDigitsOnly.length != 11) {
+//            binding.cadastroCpfUsuario.error = "CPF inválido."
+//            return false
+//        }
         /* Verificando se o campo "telefone" esta vazio */
         if (telefone.equals(null)) {
             binding.cadastroTelefoneUsuario.error = "Preencha o seu Telefone."
@@ -181,7 +179,8 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         binding.bntCadastroUsuario.setOnClickListener {
             /* Verificando se todos os campos foram preenchidos */
             if (validarCampos()) {
-                cadastrarUsuario(nome, email, cpf, telefone, senha)
+                cadastrarUsuario(nome, email, //cpf,
+                    telefone, senha)
             }
         }
     }
@@ -199,7 +198,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
     private fun cadastrarUsuario(
         nome: String,
         email: String,
-        cpf: String,
+        //cpf: String,
         telefone: Int,
         senha: String
     ) {
@@ -212,7 +211,8 @@ class CadastroUsuarioActivity : AppCompatActivity() {
                 val idUsuario = resultado.result.user?.uid
                 if (idUsuario != null) {
                     val usr = User(
-                        nome, email, cpf, telefone
+                        idUsuario, nome, email, //cpf,
+                        telefone
                     )
                     salvarUsuarioFirestore(usr)
                 }
@@ -253,7 +253,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
     private fun salvarUsuarioFirestore(usr: User) {
         firestore
             .collection("usuarios")
-            .document(usr.cpfUser)
+            .document(usr.id)
             .set(usr)
             .addOnSuccessListener {
                 /* Em caso de sucesso, exibe uma mensagem de sucesso e direciona para a tela de login */

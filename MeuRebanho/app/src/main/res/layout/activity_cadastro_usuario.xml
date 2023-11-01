@@ -19,6 +19,44 @@
         app:layout_constraintVertical_bias="0.022" />
 
 
+    <!--    <com.google.android.material.textfield.TextInputLayout-->
+    <!--        android:id="@+id/TextInputEditText_cpf"-->
+    <!--        android:layout_width="343dp"-->
+    <!--        android:layout_height="102dp"-->
+    <!--        android:padding="8dp"-->
+    <!--        app:counterEnabled="true"-->
+    <!--        app:counterMaxLength="14"-->
+    <!--        app:helperText="Ex: 123.456.789-00"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.632"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_email"-->
+    <!--        app:layout_constraintVertical_bias="0.044">-->
+
+    <!--        <com.google.android.material.textfield.TextInputEditText-->
+    <!--            android:id="@+id/cadastro_cpf_usuario"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:drawablePadding="8dp"-->
+    <!--            android:hint="CPF"-->
+    <!--            android:inputType="text" />-->
+
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <Button
+        android:id="@+id/bnt_cadastro_usuario"
+        android:layout_width="142dp"
+        android:layout_height="54dp"
+        android:backgroundTint="@color/verdefolha"
+        android:text="Cadastrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_senha"
+        app:layout_constraintVertical_bias="0.087" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TextInputEditText_senha"
         android:layout_width="343dp"
@@ -26,10 +64,10 @@
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_telefone"
-        app:layout_constraintVertical_bias="0.055"
+        app:layout_constraintVertical_bias="0.07"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -49,10 +87,10 @@
         app:counterMaxLength="25"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_cad_insere_dados"
-        app:layout_constraintVertical_bias="0.021">
+        app:layout_constraintVertical_bias="0.118">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cadastro_nome_usuario"
@@ -72,10 +110,10 @@
         app:counterMaxLength="25"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_cpf"
-        app:layout_constraintVertical_bias="0.012">
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_email"
+        app:layout_constraintVertical_bias="0.013">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cadastro_telefone_usuario"
@@ -97,7 +135,7 @@
         app:helperText="Ex: joao@gmail.com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_nome"
         app:layout_constraintVertical_bias="0.052">
@@ -111,44 +149,6 @@
             android:inputType="text|textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/TextInputEditText_cpf"
-        android:layout_width="343dp"
-        android:layout_height="102dp"
-        android:padding="8dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="14"
-        app:helperText="Ex: 123.456.789-00"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.632"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_email"
-        app:layout_constraintVertical_bias="0.044">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cadastro_cpf_usuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="8dp"
-            android:hint="CPF"
-            android:inputType="text" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/bnt_cadastro_usuario"
-        android:layout_width="142dp"
-        android:layout_height="54dp"
-        android:text="Cadastrar"
-        android:backgroundTint="@color/verdefolha"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_senha"
-        app:layout_constraintVertical_bias="0.092" />
 
     <TextView
         android:id="@+id/init_sessao"
