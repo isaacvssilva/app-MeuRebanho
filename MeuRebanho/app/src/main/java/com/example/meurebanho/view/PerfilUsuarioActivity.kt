@@ -28,6 +28,7 @@ class PerfilUsuarioActivity : AppCompatActivity() {
         inicializaToolbar()
         dadosUsuario()
         editarNome()
+        editarTelefone()
         editarEmail()
         editarSenha()
         deletarConta()
@@ -63,6 +64,14 @@ class PerfilUsuarioActivity : AppCompatActivity() {
         binding.editarNomeUsuario.setOnClickListener {
             startActivity(
                 Intent(this, AtualizaNomeActivity::class.java)
+            )
+        }
+    }
+
+    private fun editarTelefone() {
+        binding.editarTelefoneUsuario.setOnClickListener {
+            startActivity(
+                Intent(this, AtualizaTelefoneActivity::class.java)
             )
         }
     }
@@ -103,8 +112,10 @@ class PerfilUsuarioActivity : AppCompatActivity() {
                 val dados = valor?.data
                 if (dados != null) {
                     val nome = dados["nomeUser"]
+                    val telefone = dados["telefoneUser"]
                     val email = dados["emailUser"]
                     binding.nomePerfil.setText(nome.toString())
+                    binding.telefonePerfil.setText(telefone.toString())
                     binding.emailPerfil.setText(email.toString())
                 }
             }

@@ -17,6 +17,10 @@
         android:theme="@style/Theme.MeuRebanho"
         tools:targetApi="31">
         <activity
+            android:name=".view.AtualizaTelefoneActivity"
+            android:exported="false"
+            android:parentActivityName=".view.PerfilUsuarioActivity" />
+        <activity
             android:name=".view.DeletaUsuarioActivity"
             android:exported="false" />
         <activity

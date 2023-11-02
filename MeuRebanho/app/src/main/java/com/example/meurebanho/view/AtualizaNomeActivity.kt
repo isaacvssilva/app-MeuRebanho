@@ -79,10 +79,7 @@ class AtualizaNomeActivity : AppCompatActivity() {
                     Log.e("AtualizaNomeActivity", "Erro no Firestore: $e")
                 }
         } else {
-            // O usuário é nulo, lide com isso adequadamente (por exemplo, solicite que o usuário faça login)
             Toast.makeText(this, "Usuário nulo, faça login novamente", Toast.LENGTH_SHORT).show()
-            // Adicione a lógica de redirecionamento para a tela de login ou trate apropriadamente
         }
     }
-
 }

@@ -25,8 +25,9 @@ class CadastroUsuarioActivity : AppCompatActivity() {
     /* Variaveis para os campo de texto do cadastro */
     private lateinit var nome: String
     private lateinit var email: String
-    private lateinit var cpf: String
-    private var telefone = 0
+
+    //private lateinit var cpf: String
+    private lateinit var telefone: String
     private lateinit var senha: String
 
     /* Criando instancia para o Firebase Authentication */
@@ -95,36 +96,36 @@ class CadastroUsuarioActivity : AppCompatActivity() {
      * @param cpf O número de CPF a ser formatado.
      * @return O número de CPF formatado no formato "###.###.###-##".
      */
-    fun formatarCPF(cpf: String): String {
-        /* Máscara de formatação desejada para o CPF */
-        val mask = "###.###.###-##"
-
-        /* Remove todos os caracteres não numéricos do CPF */
-        val onlyNumbers = cpf.replace("\\D+".toRegex(), "")
-
-        /* Inicializa uma string formatada */
-        val formatted = StringBuilder()
-
-        /* Inicializa um índice para percorrer a máscara */
-        var index = 0
-
-        /* Percorre a máscara de formatação e substitui "#" pelos números do CPF */
-        for (char in mask) {
-            if (char == '#') {
-                if (index < onlyNumbers.length) {
-                    formatted.append(onlyNumbers[index])
-                    index++
-                } else {
-                    break
-                }
-            } else {
-                formatted.append(char)
-            }
-        }
-
-        /* Retorna o CPF formatado */
-        return formatted.toString()
-    }
+//    fun formatarCPF(cpf: String): String {
+//        /* Máscara de formatação desejada para o CPF */
+//        val mask = "###.###.###-##"
+//
+//        /* Remove todos os caracteres não numéricos do CPF */
+//        val onlyNumbers = cpf.replace("\\D+".toRegex(), "")
+//
+//        /* Inicializa uma string formatada */
+//        val formatted = StringBuilder()
+//
+//        /* Inicializa um índice para percorrer a máscara */
+//        var index = 0
+//
+//        /* Percorre a máscara de formatação e substitui "#" pelos números do CPF */
+//        for (char in mask) {
+//            if (char == '#') {
+//                if (index < onlyNumbers.length) {
+//                    formatted.append(onlyNumbers[index])
+//                    index++
+//                } else {
+//                    break
+//                }
+//            } else {
+//                formatted.append(char)
+//            }
+//        }
+//
+//        /* Retorna o CPF formatado */
+//        return formatted.toString()
+//    }
 
 
     /**
@@ -138,7 +139,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         nome = binding.cadastroNomeUsuario.text.toString()
         email = binding.cadastroEmailUsuario.text.toString()
         //cpf = binding.cadastroCpfUsuario.text.toString()
-        telefone = binding.cadastroTelefoneUsuario.text.toString().toInt()
+        telefone = binding.cadastroTelefoneUsuario.text.toString()
         senha = binding.cadastroSenhaUsuario.text.toString()
 
         /* Verificando se o campo "nome" esta vazio */
@@ -179,8 +180,10 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         binding.bntCadastroUsuario.setOnClickListener {
             /* Verificando se todos os campos foram preenchidos */
             if (validarCampos()) {
-                cadastrarUsuario(nome, email, //cpf,
-                    telefone, senha)
+                cadastrarUsuario(
+                    nome, email, //cpf,
+                    telefone, senha
+                )
             }
         }
     }
@@ -199,7 +202,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         nome: String,
         email: String,
         //cpf: String,
-        telefone: Int,
+        telefone: String,
         senha: String
     ) {
 

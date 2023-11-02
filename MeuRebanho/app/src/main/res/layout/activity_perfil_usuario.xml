@@ -18,49 +18,60 @@
 
     <Button
         android:id="@+id/deletar_usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
+        android:layout_width="178dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/baseline_delete_24"
         android:drawableTint="@color/white"
         android:text="Deletar Perfil"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editar_senha_usuario" />
 
     <Button
         android:id="@+id/editar_email_usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/baseline_edit_24"
         android:drawableTint="@color/white"
         android:text="Editar email"
-        app:layout_constraintBottom_toTopOf="@+id/editar_senha_usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editar_nome_usuario"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/editar_telefone_usuario" />
+
+    <Button
+        android:id="@+id/editar_telefone_usuario"
+        android:layout_width="178dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/baseline_edit_24"
+        android:drawableTint="@color/white"
+        android:text="Editar telefone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editar_nome_usuario" />
 
     <Button
         android:id="@+id/editar_senha_usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/baseline_edit_24"
         android:drawableTint="@color/white"
         android:text="Editar senha"
-        app:layout_constraintBottom_toTopOf="@+id/deletar_usuario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editar_email_usuario"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/editar_email_usuario" />
 
     <Button
         android:id="@+id/editar_nome_usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="48dp"
         android:layout_marginTop="140dp"
         android:drawableLeft="@drawable/baseline_edit_24"
         android:drawableTint="@color/white"
@@ -85,8 +96,17 @@
         android:layout_width="200dp"
         android:layout_height="21dp"
         android:layout_marginBottom="28dp"
-
         app:layout_constraintBottom_toTopOf="@+id/editar_nome_usuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/telefone_perfil"
+        android:layout_width="200dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/email_perfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
