@@ -15,7 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeuRebanho"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".view.ConfiguraRastreadorActivity"
+            android:exported="false"
+            android:parentActivityName=".view.RastreadorActivity"/>
+        <activity
+            android:name=".view.ConfiguraGatewayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.CadastroRastreadorActivity"
+            android:exported="false" />
         <activity
             android:name=".view.AtualizaTelefoneActivity"
             android:exported="false"
@@ -52,7 +63,7 @@
             android:exported="false"
             android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity
-            android:name=".view.ConfigurarRastreadorActivity"
+            android:name=".view.RastreadorActivity"
             android:exported="false"
             android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity

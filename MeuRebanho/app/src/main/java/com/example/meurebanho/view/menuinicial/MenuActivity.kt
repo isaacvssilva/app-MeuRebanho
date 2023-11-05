@@ -16,11 +16,11 @@ import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityMenuBinding
 import com.example.meurebanho.view.AlertasActivity
 import com.example.meurebanho.view.CadastroAnimalActivity
-import com.example.meurebanho.view.ConfigurarRastreadorActivity
 import com.example.meurebanho.view.ConsultarAnimaisActivity
 import com.example.meurebanho.view.LocalizarAnimalActivity
 import com.example.meurebanho.view.MainActivity
 import com.example.meurebanho.view.PerfilUsuarioActivity
+import com.example.meurebanho.view.RastreadorActivity
 import com.example.meurebanho.view.RelatoriosActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -92,7 +92,7 @@ class MenuActivity : AppCompatActivity() {
                 }
 
                 "Config. rastreador" -> {
-                    val intent = Intent(this, ConfigurarRastreadorActivity::class.java)
+                    val intent = Intent(this, RastreadorActivity::class.java)
                     startActivity(intent)
                 }
 
