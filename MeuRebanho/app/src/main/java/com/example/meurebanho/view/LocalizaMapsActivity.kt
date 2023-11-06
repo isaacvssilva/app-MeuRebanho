@@ -27,6 +27,7 @@ class LocalizaMapsActivity : AppCompatActivity() {
 
     private var posAtualLat: Double = 0.0
     private var posAtualLon: Double = 0.0
+    private var atualizacaoContinua = false
 
     /* Referencia ao cliente de provedor de localização fundida
   * usado para acessar a localizacao do dispositivo */
@@ -48,18 +49,8 @@ class LocalizaMapsActivity : AppCompatActivity() {
 
         /* Inicializando ToolBar para a interface de maps */
         inicializaToolbar()
-
-
-        /* Inicialiando funcao que captura a posicao do usuario */
-        posicaoAtualUsuario()
-
-        /* recebendo dados do search view com o id do animal */
-        val bundle = intent.extras
-        if (bundle != null) {
-            val id = bundle.getString("id")
-            /* Inicialiando funcao que captura a posicao do animal */
-            posicaoAtualAnimal(id.toString())
-        }
+        mapsConfig()
+        atualizaPosicao()
     }
 
     private fun inicializaToolbar() {
@@ -69,6 +60,63 @@ class LocalizaMapsActivity : AppCompatActivity() {
             title = "Geolocalização"
             setDisplayHomeAsUpEnabled(true)
         }
+    }
+
+
+    private fun mapsConfig() {
+
+        /* verificando permissoes de localizacao */
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) !=
+            PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) !=
+            PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                100
+            )
+            return
+        }
+        val localizacao = fusedLocationClient.lastLocation
+        localizacao.addOnSuccessListener {
+            if (it != null) {
+                googleMap?.uiSettings?.isCompassEnabled = true
+                googleMap?.uiSettings?.isZoomControlsEnabled = true
+                googleMap?.isMyLocationEnabled = true
+                googleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
+            }
+        }
+    }
+
+    private fun atualizaPosicao() {
+        atualizacaoContinua = true
+        val threadAtualizacao = Thread {
+            while (atualizacaoContinua) {
+                runOnUiThread {
+                    /* Inicializando funcao que captura a posicao do usuario */
+                    posicaoAtualUsuario()
+
+                    /* recebendo dados do search view com o id do animal */
+                    val bundle = intent.extras
+                    if (bundle != null) {
+                        val id = bundle.getString("id")
+                        /* Inicializando funcao que captura a posicao do animal */
+                        posicaoAtualAnimal(id.toString())
+                    }
+                    /* Limpando o mapa para evitar acumulacao de marcadores antigos */
+                    googleMap?.clear()
+                }
+                Thread.sleep(1000)
+            }
+        }
+        threadAtualizacao.start()
     }
 
     private var marcadorOrigem: Marker? = null // Referencia ao marcador de origem
@@ -129,12 +177,6 @@ class LocalizaMapsActivity : AppCompatActivity() {
         val localizacao = fusedLocationClient.lastLocation
         localizacao.addOnSuccessListener { it ->
             if (it != null) {
-                googleMap?.uiSettings?.isCompassEnabled = true
-                googleMap?.uiSettings?.isZoomControlsEnabled = true
-                googleMap?.isMyLocationEnabled = true
-                googleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
-
-
                 /* Atualizando marcador para a nova posicao */
                 origem = LatLng(it.latitude, it.longitude)
                 posAtualLat = origem.latitude
@@ -186,4 +228,13 @@ class LocalizaMapsActivity : AppCompatActivity() {
             Toast.makeText(this, "FAILED", Toast.LENGTH_LONG).show()
         }
     }
+
+    /* Sobrescrevendo o metodo onDestroy para
+    encerrar a atualizacao quando a activity estiver sendo destruida */
+    override fun onDestroy() {
+        super.onDestroy()
+        /* Sinalizando a parada da atualizacao  */
+        atualizacaoContinua = false
+    }
+
 }
