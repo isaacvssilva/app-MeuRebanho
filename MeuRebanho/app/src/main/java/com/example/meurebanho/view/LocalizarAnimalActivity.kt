@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityLocalizarAnimalBinding
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -89,8 +90,17 @@ class LocalizarAnimalActivity : AppCompatActivity() {
         searchView = findViewById(R.id.idSV)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                // Chamada para realizar a consulta ao Firestore com o ID informado
-                locListaAnimalCloud(query)
+                /* Verificando se há conexao com a internet */
+                if (NetworkUtils.isInternetAvailable(applicationContext)) {
+                    // Chamada para realizar a consulta ao Firestore com o ID informado
+                    locListaAnimalCloud(query)
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Sem conexão à Internet. Tente novamente mais tarde.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
                 return true
             }
 
