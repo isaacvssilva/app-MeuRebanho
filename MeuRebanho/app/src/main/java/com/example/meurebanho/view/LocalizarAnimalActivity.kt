@@ -76,7 +76,17 @@ class LocalizarAnimalActivity : AppCompatActivity() {
 
         /* Carregando dado para a activity do google maps */
         intent.putExtra("id", animalCode)
-        startActivity(intent)
+
+        /* Verificando se há conexao com a internet */
+        if (NetworkUtils.isInternetAvailable(applicationContext)) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "Sem conexão à Internet. Tente novamente mais tarde.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun initializeRecyclerView() {
