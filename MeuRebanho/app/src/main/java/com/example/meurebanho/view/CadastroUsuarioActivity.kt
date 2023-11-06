@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityCadastroUsuarioBinding
 import com.example.meurebanho.model.User
@@ -178,12 +179,21 @@ class CadastroUsuarioActivity : AppCompatActivity() {
      */
     private fun clickCadastrar() {
         binding.bntCadastroUsuario.setOnClickListener {
-            /* Verificando se todos os campos foram preenchidos */
-            if (validarCampos()) {
-                cadastrarUsuario(
-                    nome, email, //cpf,
-                    telefone, senha
-                )
+            /* Verificando se há conexao com a internet */
+            if (NetworkUtils.isInternetAvailable(this)) {
+                /* Verificando se todos os campos foram preenchidos */
+                if (validarCampos()) {
+                    cadastrarUsuario(
+                        nome, email, //cpf,
+                        telefone, senha
+                    )
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Sem conexão à Internet. Tente novamente mais tarde.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

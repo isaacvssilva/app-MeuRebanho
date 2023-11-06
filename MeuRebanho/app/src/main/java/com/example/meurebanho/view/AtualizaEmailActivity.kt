@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.databinding.ActivityAtualizaEmailBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,8 +41,17 @@ class AtualizaEmailActivity : AppCompatActivity() {
 
     private fun clickAtualizaEmail() {
         binding.btnAtualizarEmail.setOnClickListener {
-            if (validarCampos()) {
-                AtualizaEmailUsuario()
+            /* Verificando se há conexao com a internet */
+            if (NetworkUtils.isInternetAvailable(this)) {
+                if (validarCampos()) {
+                    AtualizaEmailUsuario()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Sem conexão à Internet. Tente novamente mais tarde.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

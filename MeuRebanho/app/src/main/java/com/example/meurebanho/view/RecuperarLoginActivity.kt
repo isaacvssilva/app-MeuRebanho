@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.databinding.ActivityRecuperarLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -14,10 +15,12 @@ class RecuperarLoginActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityRecuperarLoginBinding.inflate(layoutInflater)
     }
+
     /* Criando instancia para o Firebase Authentication */
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -27,8 +30,17 @@ class RecuperarLoginActivity : AppCompatActivity() {
 
     private fun clickRecuperar() {
         binding.btnRecuperarLogin.setOnClickListener {
-            if( validarCampos() ){
-                RecuperarLogin()
+            /* Verificando se há conexao com a internet */
+            if (NetworkUtils.isInternetAvailable(this)) {
+                if (validarCampos()) {
+                    RecuperarLogin()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Sem conexão à Internet. Tente novamente mais tarde.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -41,6 +53,7 @@ class RecuperarLoginActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
         }
     }
+
     private fun validarCampos(): Boolean {
         /* Obtendo os valores dos campos de login */
         email_rec = binding.RecEmailLoginUsuario.text.toString()
@@ -53,10 +66,11 @@ class RecuperarLoginActivity : AppCompatActivity() {
         /* Todos os campos estao preenchidos corretamente */
         return true
     }
+
     private fun RecuperarLogin() {
         firebaseAuth.sendPasswordResetEmail(email_rec).addOnCompleteListener {
             if (it.isSuccessful) {
-                Toast.makeText(this,"Enviado link com sucesso", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Enviado link com sucesso", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
             }

@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityCadastroAnimalBinding
 import com.example.meurebanho.model.Animal
@@ -132,29 +133,38 @@ class CadastroAnimalActivity : AppCompatActivity() {
      * se estiverem, o cadastro do usuario foi realizado.
      */
     private fun clickCadastrar() {
-        /* Verificando se todos os campos foram preenchidos */
-        if (validarCampos()) {
-            val animal = Animal(
-                especie.text.toString(),
-                raca.text.toString(),
-                cor.text.toString(),
-                sexo.text.toString(),
-                datanasc.text.toString(),
-                codigo.text.toString(),
-                R.drawable.nelore
-            )
-            animalDAO.addAnimal(animal);
-            //salvarUsuarioFirestore(animal)
-            /* criando nó no Firebase Realtime Database */
-            nodeFilhoAnimalRTDB(codigo.text.toString())
+        /* Verificando se há conexao com a internet */
+        if (NetworkUtils.isInternetAvailable(this)) {
+            /* Verificando se todos os campos foram preenchidos */
+            if (validarCampos()) {
+                val animal = Animal(
+                    especie.text.toString(),
+                    raca.text.toString(),
+                    cor.text.toString(),
+                    sexo.text.toString(),
+                    datanasc.text.toString(),
+                    codigo.text.toString(),
+                    R.drawable.nelore
+                )
+                animalDAO.addAnimal(animal);
+                //salvarUsuarioFirestore(animal)
+                /* criando nó no Firebase Realtime Database */
+                nodeFilhoAnimalRTDB(codigo.text.toString())
 
-            Toast.makeText(this, "Animal cadastrado com sucesso", Toast.LENGTH_SHORT).show()
-            especie.text.clear()
-            raca.text.clear()
-            cor.text.clear()
-            sexo.text.clear()
-            datanasc.text.clear()
-            codigo.text.clear()
+                Toast.makeText(this, "Animal cadastrado com sucesso", Toast.LENGTH_SHORT).show()
+                especie.text.clear()
+                raca.text.clear()
+                cor.text.clear()
+                sexo.text.clear()
+                datanasc.text.clear()
+                codigo.text.clear()
+            }
+        } else {
+            Toast.makeText(
+                this,
+                "Sem conexão à Internet. Tente novamente mais tarde.",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

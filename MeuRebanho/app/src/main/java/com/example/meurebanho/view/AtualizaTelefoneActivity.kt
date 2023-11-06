@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.databinding.ActivityAtualizaTelefoneBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -39,9 +40,18 @@ class AtualizaTelefoneActivity : AppCompatActivity() {
     }
 
     private fun clickAtualizaTelefone() {
+        /* Verificando se há conexao com a internet */
         binding.btnAtualizarTelefone.setOnClickListener {
-            if (validarCampos()) {
-                AtualizaTelefoneUsuario()
+            if (NetworkUtils.isInternetAvailable(this)) {
+                if (validarCampos()) {
+                    AtualizaTelefoneUsuario()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Sem conexão à Internet. Tente novamente mais tarde.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

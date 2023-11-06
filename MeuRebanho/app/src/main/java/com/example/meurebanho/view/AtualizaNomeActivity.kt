@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.databinding.ActivityAtualizaNomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,7 +31,7 @@ class AtualizaNomeActivity : AppCompatActivity() {
 
     private fun inicializaToolbar() {
         val toolbar = binding.tbAtualizaNome.tbPrincipal
-        setSupportActionBar( toolbar )
+        setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Perfil"
             setDisplayHomeAsUpEnabled(true)
@@ -39,8 +40,17 @@ class AtualizaNomeActivity : AppCompatActivity() {
 
     private fun clickAtualizaNome() {
         binding.btnAtualizarNome.setOnClickListener {
-            if (validarCampos()) {
-                AtualizaNomeUsuario()
+            /* Verificando se há conexao com a internet */
+            if (NetworkUtils.isInternetAvailable(this)) {
+                if (validarCampos()) {
+                    AtualizaNomeUsuario()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Sem conexão à Internet. Tente novamente mais tarde.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -75,7 +85,11 @@ class AtualizaNomeActivity : AppCompatActivity() {
                 }
                 .addOnFailureListener { e ->
                     // Falha na atualização do nome no Firestore
-                    Toast.makeText(this, "Falha ao atualizar o nome no Firestore", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Falha ao atualizar o nome no Firestore",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     Log.e("AtualizaNomeActivity", "Erro no Firestore: $e")
                 }
         } else {

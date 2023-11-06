@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.databinding.ActivityDeletaUsuarioBinding
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -31,8 +32,16 @@ class DeletaUsuarioActivity : AppCompatActivity() {
 
     private fun clickConfirmar() {
         binding.btnConfirmaDelete.setOnClickListener {
-            if (validarCampos()) {
-                verificacaoSegura()
+            if (NetworkUtils.isInternetAvailable(this)) {
+                if (validarCampos()) {
+                    verificacaoSegura()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Sem conexão à Internet. Tente novamente mais tarde.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

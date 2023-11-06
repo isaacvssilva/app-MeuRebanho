@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.databinding.ActivityAtualizaSenhaBinding
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +31,7 @@ class AtualizaSenhaActivity : AppCompatActivity() {
 
     private fun inicializaToolbar() {
         val toolbar = binding.tbAtualizaSenha.tbPrincipal
-        setSupportActionBar( toolbar )
+        setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Perfil"
             setDisplayHomeAsUpEnabled(true)
@@ -39,8 +40,17 @@ class AtualizaSenhaActivity : AppCompatActivity() {
 
     private fun clickAtualizaSenha() {
         binding.btnAtualizarSenha.setOnClickListener {
-            if (validarCampos()) {
-                AtualizaSenhaUsuario()
+            /* Verificando se há conexao com a internet */
+            if (NetworkUtils.isInternetAvailable(this)) {
+                if (validarCampos()) {
+                    AtualizaSenhaUsuario()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Sem conexão à Internet. Tente novamente mais tarde.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
