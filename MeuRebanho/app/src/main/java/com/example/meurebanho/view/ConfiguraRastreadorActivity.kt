@@ -16,7 +16,7 @@ class ConfiguraRastreadorActivity : AppCompatActivity() {
 
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbConfigRastrador.tbPrincipal
+        val toolbar = binding.tbConfigRastrador.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Rastreador"

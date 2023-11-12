@@ -31,7 +31,7 @@ class AtualizaEmailActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbAtualizaEmail.tbPrincipal
+        val toolbar = binding.tbAtualizaEmail.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Perfil"

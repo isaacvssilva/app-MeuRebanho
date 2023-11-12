@@ -150,7 +150,7 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbMenuPrincipal.tbPrincipal
+        val toolbar = binding.tbMenuPrincipal.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Meu Rebanho"

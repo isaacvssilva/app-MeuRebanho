@@ -54,7 +54,7 @@ class LocalizaMapsActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbMaps.tbPrincipal
+        val toolbar = binding.tbMaps.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Geolocalização"

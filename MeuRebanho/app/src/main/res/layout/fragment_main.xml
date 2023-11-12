@@ -20,7 +20,7 @@ android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/nelore" />
+            android:src="@drawable/nelore1" />
 
         <TextView
             android:id="@+id/description"

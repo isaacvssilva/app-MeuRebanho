@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.meurebanho.NetworkUtils
@@ -17,12 +19,13 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+
 class CadastroAnimalActivity : AppCompatActivity() {
     private val calendar = Calendar.getInstance();
 
     /* Variaveis para os campo de texto do cadastro */
     private lateinit var especie: EditText
-    private lateinit var sexo: EditText
+    private var sexo: String ="M"
     private lateinit var cor: EditText
     private lateinit var raca: EditText
     private lateinit var codigo: EditText
@@ -42,15 +45,19 @@ class CadastroAnimalActivity : AppCompatActivity() {
         especie = findViewById<EditText>(R.id.cad_especie_animal)
         raca = findViewById<EditText>(R.id.cad_raca_animal)
         cor = findViewById<EditText>(R.id.cad_cor_animal)
-        sexo = findViewById<EditText>(R.id.cad_sexo_animal)
         codigo = findViewById<EditText>(R.id.cad_codigo_animal)
         button_add = findViewById<Button>(R.id.btncad_animal)
+        var radiosexo = findViewById<RadioGroup>(R.id.groupbutton)
 
         inicializaToolbar()
 
-        animalDAO = rebanhoDAO.getInstance(fragmentlist())
+        animalDAO = rebanhoDAO.getInstance(ConsultarAnimaisActivity())
         animalDAO.init()
 
+        radiosexo.setOnCheckedChangeListener { group, isChecked ->
+            sexo=group.findViewById<RadioButton>(isChecked).text.toString()
+            Toast.makeText(this, "sexo:"+sexo, Toast.LENGTH_SHORT).show()
+        }
         datanasc.setOnClickListener {
             showDatePicker()
         }
@@ -80,12 +87,6 @@ class CadastroAnimalActivity : AppCompatActivity() {
         )
         datePicker.show();
     }
-
-
-    /* Criando instancia para firestore DataBase */
-//    private val firestore by lazy {
-//        FirebaseFirestore.getInstance()
-//    }
 
     /**
      * Funcao que Valida os campos de entrada do formulario de cadastro.
@@ -119,10 +120,6 @@ class CadastroAnimalActivity : AppCompatActivity() {
             Toast.makeText(this, "Preencha o seu nome", Toast.LENGTH_SHORT).show()
             return false
         }
-        if (sexo.text.isEmpty()) {
-            Toast.makeText(this, "Preencha o seu nome", Toast.LENGTH_SHORT).show()
-            return false
-        }
         /* Todos os campos estao preenchidos corretamente */
         return true
     }
@@ -138,13 +135,13 @@ class CadastroAnimalActivity : AppCompatActivity() {
             /* Verificando se todos os campos foram preenchidos */
             if (validarCampos()) {
                 val animal = Animal(
-                    especie.text.toString(),
                     raca.text.toString(),
+                    especie.text.toString(),
                     cor.text.toString(),
-                    sexo.text.toString(),
+                    sexo,
                     datanasc.text.toString(),
                     codigo.text.toString(),
-                    R.drawable.nelore
+                    R.drawable.nelore1
                 )
                 animalDAO.addAnimal(animal);
                 //salvarUsuarioFirestore(animal)
@@ -155,7 +152,7 @@ class CadastroAnimalActivity : AppCompatActivity() {
                 especie.text.clear()
                 raca.text.clear()
                 cor.text.clear()
-                sexo.text.clear()
+                sexo
                 datanasc.text.clear()
                 codigo.text.clear()
             }
@@ -169,7 +166,7 @@ class CadastroAnimalActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbCadastroAnimal.tbPrincipal
+        val toolbar = binding.tbCadastroAni.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Cadastrar Animal"
@@ -197,28 +194,5 @@ class CadastroAnimalActivity : AppCompatActivity() {
         /* Adicionando os dados ao novo nó */
         novoAnimalRef.setValue("")
     }
+    }
 
-    /**
-     * Salva os dados do usuario no banco de dados Firestore.
-     *
-     * @param usr O objeto User contendo os dados do usuario a serem salvos.
-     */
-//    private fun salvarUsuarioFirestore(animal: Animal) {
-//        firestore
-//            .collection("Animais")
-//            .document( animal.codigo )
-//            .set( animal )
-//            .addOnSuccessListener {
-//                /* Em caso de sucesso, exibe uma mensagem de sucesso e direciona para a tela de login */
-//                Toast.makeText(applicationContext,
-//                    "animal cadastrado com sucesso!",
-//                    Toast.LENGTH_LONG).show()
-//
-//            }.addOnFailureListener {
-//                /* Em caso de falha, exibe uma mensagem de erro */
-//                Toast.makeText(applicationContext,
-//                    "Erro ao fazer seu cadastro!",
-//                    Toast.LENGTH_LONG).show()
-//            }
-    //}
-}

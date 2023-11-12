@@ -4,7 +4,6 @@
     <string name="inicar_sessao"><u>Iniciar sessão</u></string>
     <string name="esqueci_minha_senha"><u>Esqueci minha senha</u></string>
     <string name="descripition"><u>A raça de gado Nelore, hoje presente em todo o território nacional, é uma espécie bem-adaptada ao Brasil, pois vive facilmente no clima tropical. Derivada da espécie indiana Ongole, o Nelore apareceu aqui no século 19 e passou por melhoramento genético constante ao longo dos anos. Hoje, é a raça responsável por aproximadamente 80% do gado de corte do País.
-
 De acordo com a Associação dos Criadores de Nelore do Brasil (ACNB), a raça é muito resistente ao calor brasileiro por ter a superfície corporal maior em relação ao corpo, além de ter mais glândulas sudoríparas e apresentar um metabolismo lento, o que gera menos calor.
 
 Quando estão expostos a temperaturas mais altas, a pele produz uma substância oleosa que funciona como repelente para insetos e parasitas, diminuindo a ocorrência de zoonoses.
@@ -26,4 +25,9 @@ As orelhas são simétricas, curtas e com suas extremidades em formato de ponta 
 A musculatura do Nelore é distinta entre os gêneros, pois o macho apresenta uma musculatura com maior desenvolvimento, enquanto a fêmea tem a musculatura com menor desenvolvimento. O cupim no macho é bastante destacado, já na fêmea, é discreto. As tetas da vaca são de tamanho médio e eficientes para o manuseio e a retirada do leite.
     </u>
 </string>
+
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:background">@android:color/holo_red_light</item>
+    </style>
 </resources>

@@ -2,7 +2,9 @@ package com.example.meurebanho.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.meurebanho.databinding.ActivityAlertasBinding
+import com.google.android.material.appbar.AppBarLayout
 
 class AlertasActivity : AppCompatActivity() {
 
@@ -17,7 +19,7 @@ class AlertasActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbAlertas.tbPrincipal
+        val toolbar: Toolbar = binding.tbAlertas.toolbar
         setSupportActionBar( toolbar )
         supportActionBar?.apply {
             title = "Alertas"

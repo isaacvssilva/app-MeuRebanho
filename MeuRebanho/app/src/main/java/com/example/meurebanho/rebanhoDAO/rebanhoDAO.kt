@@ -1,25 +1,19 @@
 package com.example.meurebanho.rebanhoDAO
 import android.util.Log;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity
 import com.example.meurebanho.R
-import com.example.meurebanho.view.CadastroAnimalActivity
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 
 import com.example.meurebanho.model.Animal;
 import com.example.meurebanho.view.ConsultarAnimaisActivity
-import com.example.meurebanho.view.fragmentlist
-import com.google.firebase.firestore.QueryDocumentSnapshot
 
 
 class rebanhoDAO():rebanhoDAOinterface {
@@ -28,10 +22,10 @@ class rebanhoDAO():rebanhoDAOinterface {
     lateinit var lista:ArrayList<Animal>
 
     companion object {
-        private lateinit var mainActivity: fragmentlist
+        private lateinit var mainActivity: ConsultarAnimaisActivity
         private var animaisDAOFirebase: rebanhoDAO? = null;
 
-        fun getInstance(mainActivity: fragmentlist):rebanhoDAOinterface{
+        fun getInstance(mainActivity: ConsultarAnimaisActivity):rebanhoDAOinterface{
             if( animaisDAOFirebase == null ){
                 animaisDAOFirebase = rebanhoDAO( mainActivity );
             }
@@ -39,15 +33,15 @@ class rebanhoDAO():rebanhoDAOinterface {
         }
     }
 
-    private constructor(mainactivity: fragmentlist) : this() {
+    private constructor(mainactivity: ConsultarAnimaisActivity) : this() {
         rebanhoDAO.mainActivity = mainactivity;
         lista = ArrayList();
     }
         override fun addAnimal(animal:Animal):Boolean {
             //mainActivity.controlProgressBar( true );
             val user = hashMapOf<String,Any>()
-            user.put("nome", animal.especie);
             user.put("raca", animal.raca);
+            user.put("especie",animal.especie)
             user.put("cor", animal.cor);
             user.put("sexo", animal.sexo);
             user.put("datanasc", animal.datanasc);
@@ -62,7 +56,7 @@ class rebanhoDAO():rebanhoDAOinterface {
 //                        Toast.makeText( mainActivity, animal.codigo , Toast.LENGTH_LONG ).show();
                         lista.add( animal );
                         //mainActivity.notifyAdapter();
-//                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
+                        //Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
                 }
                 .addOnFailureListener {
 //                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
@@ -76,7 +70,6 @@ class rebanhoDAO():rebanhoDAOinterface {
     override fun editAnimal(c: Animal): Boolean {
             var newAnimal:DocumentReference  = db.collection("Animais").document( c.codigo );
             newAnimal.update("codigo", c.codigo,
-                "especie", c.especie,
                 "datanasc", c.datanasc )
                 .addOnSuccessListener(OnSuccessListener<Void>() {
                     fun onSuccess() {
@@ -85,7 +78,6 @@ class rebanhoDAO():rebanhoDAOinterface {
                         for( animal:Animal in lista ){
 
                         if(animal.codigo == c.codigo){
-                            animal.especie= c.especie;
                             animal.raca= c.raca;
                             animal.cor= c.cor;
                             animal.sexo= c.sexo;
@@ -129,27 +121,23 @@ class rebanhoDAO():rebanhoDAOinterface {
 
                  var deleteanimal:DocumentReference = db.collection("Animais").document( c.codigo );
                 deleteanimal.delete().addOnSuccessListener( OnSuccessListener<Void>() {
-
-                    fun onSuccess() {
-//                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
-
+  //                      Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
                         var animalapagar:Animal? = null;
                         for( animal:Animal in lista ){
-
                         if( animal.codigo== apagar.codigo ){
                             animalapagar = animal;
-                            break;
                         }
-
+                        if( animalapagar != null ) {
+                            lista.remove( animalapagar );
+                            mainActivity.notifyAdapter();
+                            break
+                        }
                     }
 
-                        if( animalapagar != null ) lista.remove( animalapagar );
-                        //mainActivity.notifyAdapter();
-                    }
                 })
                     .addOnFailureListener(OnFailureListener() {
                         fun onFailure( e:Exception) {
-//                            Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
+                            Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
 
                         }
                     });
@@ -174,20 +162,20 @@ class rebanhoDAO():rebanhoDAOinterface {
 //                        Toast.makeText(mainActivity, "dados capturados", Toast.LENGTH_SHORT).show();
                             for (data in it.result) {
                                 val codigo = data.getString("codigo").toString();
-                                val especie: String = data.getString("nome").toString();
                                 val raca: String = data.getString("raca").toString();
+                                val especie:String =data.getString("especie").toString();
                                 val cor: String = data.getString("cor").toString();
                                 val sexo: String = data.getString("sexo").toString();
                                 val datanasc: String = data.getString("datanasc").toString();
 
                                 val c: Animal = Animal(
-                                    codigo,
-                                    especie,
                                     raca,
+                                    especie,
                                     cor,
                                     sexo,
                                     datanasc,
-                                    (R.drawable.nelore)
+                                    codigo,
+                                    (R.drawable.nelore1)
                                 );
                                 c.codigo = data.id;
 

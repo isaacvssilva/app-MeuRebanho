@@ -93,7 +93,7 @@ class PerfilUsuarioActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbPerfil.tbPrincipal
+        val toolbar = binding.tbPerfil.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Perfil"

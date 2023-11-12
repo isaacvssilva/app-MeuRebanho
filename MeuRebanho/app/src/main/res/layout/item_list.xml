@@ -29,7 +29,7 @@
                 app:strokeWidth="0.15dp"
                 android:scaleType="centerCrop"
                 android:padding="1dp"
-                android:src="@drawable/nelore"
+                android:src="@drawable/nelore1"
                 android:layout_margin="4dp"/>
 
         </LinearLayout>
@@ -40,7 +40,7 @@
             android:orientation="vertical">
 
         <TextView
-            android:id="@+id/listname"
+            android:id="@+id/list_codigo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -50,7 +50,7 @@
             android:paddingTop="5dp"
             tools:text="N° 24567677HJKU" />
         <TextView
-            android:id="@+id/listraca"
+            android:id="@+id/list_raca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="20dp"
@@ -59,7 +59,7 @@
             tools:text="yennefer" />
 
         <TextView
-            android:id="@+id/listcor"
+            android:id="@+id/list_cor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#258A00"
@@ -73,7 +73,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
         <TextView
-            android:id="@+id/listdistancia"
+            android:id="@+id/list_distancia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingEnd="10dp"

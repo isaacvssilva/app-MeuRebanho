@@ -46,7 +46,7 @@ class RastreadorActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbRastreador.tbPrincipal
+        val toolbar = binding.tbRastreador.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Configurações"

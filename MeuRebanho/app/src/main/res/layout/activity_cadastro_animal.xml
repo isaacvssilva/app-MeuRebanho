@@ -4,112 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".view.CadastroAnimalActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="160dp"
-        android:dividerPadding="30dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <include
+        android:id="@+id/tb_cadastro_ani"
+        layout="@layout/toolbar_principal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_weight="5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.050000012">
+        app:title="consulat"/>
 
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputEditText_especie"
+        android:layout_width="345dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        app:counterEnabled="false"
+        app:counterMaxLength="25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_raca">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cad_especie_animal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/style_edittext"
-            android:ems="10"
-            android:hint="Espécie"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:padding="8dp"
-            android:textColor="@color/black" />
+            android:drawablePadding="6dp"
+            android:hint="Especie" />
 
-        <EditText
-            android:id="@+id/cad_sexo_animal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/style_edittext"
-            android:ems="10"
-            android:hint="Sexo"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:padding="8dp"
-            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/cad_cor_animal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/style_edittext"
-            android:ems="10"
-            android:hint="Cor"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:padding="8dp"
-            android:textColor="@color/black" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputEditText_raca"
+        android:layout_width="345dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        app:counterEnabled="false"
+        app:counterMaxLength="25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_codigo">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cad_raca_animal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/style_edittext"
-            android:ems="10"
-            android:hint="Raça"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:padding="8dp"
-            android:textColor="@color/black" />
+            android:drawablePadding="6dp"
+            android:hint="Raca" />
 
-        <EditText
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputEditText_nascimento"
+        android:layout_width="345dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        app:counterEnabled="false"
+        app:counterMaxLength="25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_cor">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cad_datanasc_animal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/style_edittext"
-            android:ems="10"
-            android:hint="Data de Nasc."
-            android:inputType="text"
-            android:minHeight="48dp"
+            android:drawablePadding="6dp"
+            android:hint="Data Nascimento" />
 
-            android:padding="8dp"
-            android:paddingTop="10dp"
-            android:textAlignment="viewStart" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputEditText_codigo"
+        android:layout_width="345dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="30dp"
+        android:padding="6dp"
+        app:counterEnabled="false"
+        app:counterMaxLength="25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_cadastro_ani">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cad_codigo_animal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/style_edittext"
-            android:ems="10"
-            android:hint="Código"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:padding="8dp"
-            android:textColor="@color/black" />
+            android:drawablePadding="6dp"
+            android:hint="Codigo" />
 
-    </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btncad_animal"
         android:layout_width="327dp"
         android:layout_height="59dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="25dp"
         android:backgroundTint="@color/verdefolha"
         android:text="Cadastrar animal"
         android:textAlignment="center"
@@ -117,32 +114,65 @@
         app:cornerRadius="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <include
-        android:id="@+id/tb_cadastro_animal"
-        layout="@layout/toolbar_principal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TextInputEditText_cor"
+        android:layout_width="345dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        app:counterEnabled="false"
+        app:counterMaxLength="25"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_especie">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cad_cor_animal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:hint="Cor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="350dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="16dp"
-        android:text="Cadastro de Animais"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.311"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb_cadastro_animal" />
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="10dp"
+        android:text="Sexo"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/TextInputEditText_nascimento"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputEditText_nascimento"></TextView>
+
+    <RadioGroup
+        android:id="@+id/groupbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/sexo_masc"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <RadioButton
+            android:id="@+id/sexo_masc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="M"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/sexo_femi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="F"
+            android:textSize="16sp" />
+
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

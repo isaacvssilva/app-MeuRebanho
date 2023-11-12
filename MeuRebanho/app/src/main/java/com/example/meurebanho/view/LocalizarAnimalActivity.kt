@@ -59,7 +59,7 @@ class LocalizarAnimalActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbLocalizaAnimal.tbPrincipal
+        val toolbar = binding.tbLocalizaAnimal.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Localizar animal"

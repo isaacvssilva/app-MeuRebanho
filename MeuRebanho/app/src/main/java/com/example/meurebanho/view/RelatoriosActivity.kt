@@ -15,7 +15,7 @@ class RelatoriosActivity : AppCompatActivity() {
         inicializaToolbar()
     }
     private fun inicializaToolbar() {
-        val toolbar = binding.tbRelatorios.tbPrincipal
+        val toolbar = binding.tbRelatorios.toolbar
         setSupportActionBar( toolbar )
         supportActionBar?.apply {
             title = "Relatórios"

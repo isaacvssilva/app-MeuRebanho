@@ -46,7 +46,7 @@ class RecuperarLoginActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbRecLogin.tbPrincipal
+        val toolbar = binding.tbRecLogin.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Recuperar Login"

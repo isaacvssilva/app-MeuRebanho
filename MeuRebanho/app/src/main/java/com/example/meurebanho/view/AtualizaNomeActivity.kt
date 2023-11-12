@@ -30,7 +30,7 @@ class AtualizaNomeActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbAtualizaNome.tbPrincipal
+        val toolbar = binding.tbAtualizaNome.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Perfil"

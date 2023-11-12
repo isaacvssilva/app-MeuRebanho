@@ -30,7 +30,7 @@ class AtualizaSenhaActivity : AppCompatActivity() {
     }
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbAtualizaSenha.tbPrincipal
+        val toolbar = binding.tbAtualizaSenha.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Perfil"

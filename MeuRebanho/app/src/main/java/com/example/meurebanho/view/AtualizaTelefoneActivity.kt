@@ -31,7 +31,7 @@ class AtualizaTelefoneActivity : AppCompatActivity() {
 
 
     private fun inicializaToolbar() {
-        val toolbar = binding.tbAtualizaTelefone.tbPrincipal
+        val toolbar = binding.tbAtualizaTelefone.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             title = "Perfil"
