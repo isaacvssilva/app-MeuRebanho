@@ -30,4 +30,6 @@ A musculatura do Nelore é distinta entre os gêneros, pois o macho apresenta um
         <item name="android:windowNoTitle">false</item>
         <item name="android:background">@android:color/holo_red_light</item>
     </style>
+
+    <string name="title_activity_detail_animal">activity_detail_animal</string>
 </resources>

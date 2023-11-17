@@ -12,11 +12,12 @@
     android:id="@+id/cardViewMenu">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:background="@drawable/background_text_view"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:paddingStart="10dp">
 
         <ImageView
             android:id="@+id/ImageViewMenu"

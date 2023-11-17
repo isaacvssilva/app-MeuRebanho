@@ -10,6 +10,7 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +22,7 @@
         <activity
             android:name=".view.ConfiguraRastreadorActivity"
             android:exported="false"
-            android:parentActivityName=".view.RastreadorActivity"/>
+            android:parentActivityName=".view.RastreadorActivity" />
         <activity
             android:name=".view.ConfiguraGatewayActivity"
             android:exported="false" />
@@ -85,7 +86,12 @@
             android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity
             android:name=".view.CadastroUsuarioActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".view.ConsultarAnimaisActivity" />
+        <activity
+            android:name=".view.DetailAnimal"
+            android:exported="false"
+            android:parentActivityName=".view.menuinicial.MenuActivity" />
         <activity
             android:name=".view.MainActivity"
             android:exported="true">

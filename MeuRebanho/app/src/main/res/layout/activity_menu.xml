@@ -9,57 +9,58 @@
   <!-- criando aba superior da tela -->
 
   <!-- adicionando recyclerview como menu -->
-  <include
-      android:id="@+id/tb_menu_principal"
-      layout="@layout/toolbar_principal"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+<!--  <include-->
+<!--      android:id="@+id/tb_menu_principal"-->
+<!--      layout="@layout/toolbar_principal"-->
+<!--      android:layout_width="0dp"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      app:layout_constraintEnd_toEndOf="parent"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toTopOf="parent" />-->
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <LinearLayout
       android:id="@+id/user_toolbar"
       android:layout_width="match_parent"
-      android:layout_height="80dp"
-      android:background="@color/white"
-      android:padding="10dp"
+      android:layout_height="70dp"
+      android:layout_marginTop="10dp"
+      android:orientation="horizontal"
+      android:background="@drawable/background_text_view"
+      android:layout_marginStart="10dp"
+      android:layout_marginEnd="10dp"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tb_menu_principal"
-      tools:ignore="MissingConstraints">
+      app:layout_constraintTop_toTopOf="parent">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/icon_usuario"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:shapeAppearanceOverlay="@style/Circular"
+        app:strokeColor="@color/white"
+        app:strokeWidth="0.5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/nelore1"
+        android:layout_marginStart="15dp"
+        android:layout_gravity="center_vertical"/>
 
     <TextView
         android:id="@+id/user_tv"
-        android:layout_width="171dp"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_gravity="center_vertical"
         android:layout_height="27dp"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toEndOf="@+id/icon_usuario"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51" />
+        android:text="USUARIO23"
+        android:textSize="20sp" />
 
     <ImageButton
-        android:id="@+id/icon_usuario"
-        android:layout_width="48dp"
-        android:layout_height="47dp"
-        android:backgroundTint="@color/white"
-        android:tint="@color/verdefolha"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.515"
-        app:srcCompat="@drawable/baseline_user_circle_24"
-        tools:ignore="TouchTargetSizeCheck,UseAppTint" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="end|right|center_vertical"/>
 
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  </LinearLayout>
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rv_list_menu"

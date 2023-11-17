@@ -1,12 +1,16 @@
 package com.example.meurebanho.view
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meurebanho.R
+import com.example.meurebanho.controller.codes
 import com.example.meurebanho.model.Animal
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -37,6 +41,9 @@ inner class ViewHolderAnimal (itemView: View):
         val listcor: TextView = itemView.findViewById(R.id.list_cor)
         val listraca: TextView = itemView.findViewById(R.id.list_raca)
         val button_delete: ImageButton = itemView.findViewById(R.id.button_delete)
+        val button_edit: ImageButton = itemView.findViewById(R.id.button_edit)
+
+        val cardview:CardView =itemView.findViewById(R.id.item_animal)
 
         val distancia: TextView = itemView.findViewById(R.id.list_distancia)
 
@@ -46,9 +53,18 @@ inner class ViewHolderAnimal (itemView: View):
         listcor.text=character.cor
         distancia.text="8km"
 
+        cardview.setOnClickListener{
+            activity.abrir_detalhes_animal(adapterPosition)
+        }
+
         button_delete.setOnClickListener{
             activity.confirm_remove_Animal(character)
         }
+        button_edit.setOnClickListener{
+            activity.editarAnimal(adapterPosition)
+        }
+
+
     }
 }
 

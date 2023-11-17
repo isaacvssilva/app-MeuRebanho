@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.DetailAnimal2">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_tb"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:collapsedTitleTextColor="@color/white"
+            app:contentScrim="?attr/colorPrimary"
+
+            app:expandedTitleTextColor="@color/black"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:titleCollapseMode="scale"
+            app:titleEnabled="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/nelore1" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.AppCompat.Light" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:orientation="vertical"
+       >
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="140dp"
+            >
+
+            <TextView
+                android:id="@+id/codigo_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:layout_marginTop="10dp"
+                android:minHeight="25dp"
+                android:paddingTop="5dp"
+                tools:text="N° 24567677HJKU" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="30dp">
+
+        <TextView
+            android:id="@+id/raca_animal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="20dp"
+            android:paddingStart="15dp"
+            android:layout_marginTop="5dp"
+            tools:text="Raca:" />
+
+        <TextView
+            android:id="@+id/especie_animal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="20dp"
+            android:paddingStart="15dp"
+            android:layout_marginTop="5dp"
+            tools:text="Especie:" />
+        <TextView
+            android:id="@+id/cor_animal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="20dp"
+            android:paddingStart="15dp"
+            android:layout_marginTop="5dp"
+            tools:text="Cor:" />
+
+        <TextView
+            android:id="@+id/datanasc_animal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:minHeight="20dp"
+            android:paddingStart="15dp"
+            tools:text="Data Nascimento" />
+
+        <TextView
+            android:id="@+id/sexo_animal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#258A00"
+            android:paddingStart="15dp"
+            android:minHeight="20dp"
+            tools:text="Sexo:"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <Button
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Localizar Animal"
+                android:layout_marginBottom="8dp"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:shapeAppearanceOverlay="@style/Circular"
+        android:baselineAlignBottom="false"
+        android:clickable="false"
+        android:src="@drawable/nelore1"
+        app:strokeWidth="3dp"
+        app:strokeColor="@color/white"
+        android:scaleType="fitXY"
+        app:fabSize="normal"
+        app:layout_anchor="@id/collapsing_tb"
+        app:layout_anchorGravity="start|bottom"
+        android:layout_marginLeft="30dp"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

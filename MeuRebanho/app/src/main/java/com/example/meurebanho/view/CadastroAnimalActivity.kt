@@ -1,6 +1,8 @@
 package com.example.meurebanho.view
 
+import android.R.id
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -10,11 +12,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.R
+import com.example.meurebanho.controller.codes.Codes
 import com.example.meurebanho.databinding.ActivityCadastroAnimalBinding
 import com.example.meurebanho.model.Animal
-import com.example.meurebanho.rebanhoDAO.rebanhoDAO
 import com.example.meurebanho.rebanhoDAO.rebanhoDAOinterface
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FieldPath.documentId
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -27,11 +30,11 @@ class CadastroAnimalActivity : AppCompatActivity() {
     private lateinit var especie: EditText
     private var sexo: String ="M"
     private lateinit var cor: EditText
+    private var codigo_doc= "-1"
     private lateinit var raca: EditText
     private lateinit var codigo: EditText
     private lateinit var datanasc: EditText
     private lateinit var button_add: Button
-    private lateinit var animalDAO: rebanhoDAOinterface
     private lateinit var binding: ActivityCadastroAnimalBinding
 
 
@@ -51,8 +54,18 @@ class CadastroAnimalActivity : AppCompatActivity() {
 
         inicializaToolbar()
 
-        animalDAO = rebanhoDAO.getInstance(ConsultarAnimaisActivity())
-        animalDAO.init()
+        if (intent.extras != null) {
+            button_add.setText("Alterar")
+
+            datanasc.setText(intent.extras!!.getString(Codes.CHAVE_DATANASC))
+            especie.setText(intent.extras!!.getString(Codes.CHAVE_ESPECIE))
+            raca.setText (intent.extras!!.getString(Codes.CHAVE_RACA))
+            cor.setText (intent.extras!!.getString(Codes.CHAVE_COR))
+            codigo_doc= intent.extras!!.getString(Codes.CHAVE_DOCID).toString()
+            codigo.setText(intent.extras!!.getString(Codes.CHAVE_CODIGO))
+            radiosexo.check(R.id.sexo_femi)
+
+        }
 
         radiosexo.setOnCheckedChangeListener { group, isChecked ->
             sexo=group.findViewById<RadioButton>(isChecked).text.toString()
@@ -134,27 +147,26 @@ class CadastroAnimalActivity : AppCompatActivity() {
         if (NetworkUtils.isInternetAvailable(this)) {
             /* Verificando se todos os campos foram preenchidos */
             if (validarCampos()) {
-                val animal = Animal(
-                    raca.text.toString(),
-                    especie.text.toString(),
-                    cor.text.toString(),
-                    sexo,
-                    datanasc.text.toString(),
-                    codigo.text.toString(),
-                    R.drawable.nelore1
-                )
-                animalDAO.addAnimal(animal);
+
+                var intent = Intent()
+
+                intent.putExtra(Codes.CHAVE_CODIGO,codigo.text.toString())
+                intent.putExtra(Codes.CHAVE_ESPECIE, especie.text.toString())
+                intent.putExtra(Codes.CHAVE_RACA, raca.text.toString())
+                intent.putExtra(Codes.CHAVE_COR,cor.text.toString())
+                intent.putExtra(Codes.CHAVE_DATANASC,datanasc.text.toString())
+                intent.putExtra(Codes.CHAVE_SEXO,sexo)
+                intent.putExtra(Codes.CHAVE_DOCID,codigo_doc)
+
+               // animalDAO.addAnimal(animal);
                 //salvarUsuarioFirestore(animal)
                 /* criando nó no Firebase Realtime Database */
-                nodeFilhoAnimalRTDB(codigo.text.toString())
+                //nodeFilhoAnimalRTDB(codigo.text.toString())
 
                 Toast.makeText(this, "Animal cadastrado com sucesso", Toast.LENGTH_SHORT).show()
-                especie.text.clear()
-                raca.text.clear()
-                cor.text.clear()
-                sexo
-                datanasc.text.clear()
-                codigo.text.clear()
+
+                setResult(Codes.RESPONSE_OK, intent)
+                finish()
             }
         } else {
             Toast.makeText(
@@ -183,16 +195,16 @@ class CadastroAnimalActivity : AppCompatActivity() {
      *
      * @param animalId O identificador de cadastro do animal que sera usado como parte do caminho no no.
      */
-    private fun nodeFilhoAnimalRTDB(animalId: String) {
-        /* Obtendo uma referencia ao no "Animal" no Firebase Realtime Database */
-        val database = FirebaseDatabase.getInstance()
-        val animalRef = database.getReference("Animal/$animalId/")
-
-        /* Criando um novo no com o ID do animal como chave */
-        val novoAnimalRef = animalRef.child("GPS")
-
-        /* Adicionando os dados ao novo nó */
-        novoAnimalRef.setValue("")
-    }
+//    private fun nodeFilhoAnimalRTDB(animalId: String) {
+//        /* Obtendo uma referencia ao no "Animal" no Firebase Realtime Database */
+//        val database = FirebaseDatabase.getInstance()
+//        val animalRef = database.getReference("Animal/$animalId/")
+//
+//        /* Criando um novo no com o ID do animal como chave */
+//        val novoAnimalRef = animalRef.child("GPS")
+//
+//        /* Adicionando os dados ao novo nó */
+//        novoAnimalRef.setValue("")
+//    }
     }
 

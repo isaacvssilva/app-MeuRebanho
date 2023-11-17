@@ -12,12 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meurebanho.view.DetailAnimal
 import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityMenuBinding
 import com.example.meurebanho.view.AlertasActivity
 import com.example.meurebanho.view.CadastroAnimalActivity
 import com.example.meurebanho.view.ConsultarAnimaisActivity
-import com.example.meurebanho.view.LocalizarAnimalActivity
 import com.example.meurebanho.view.MainActivity
 import com.example.meurebanho.view.PerfilUsuarioActivity
 import com.example.meurebanho.view.RastreadorActivity
@@ -55,7 +55,7 @@ class MenuActivity : AppCompatActivity() {
             val intent = Intent(this, PerfilUsuarioActivity::class.java)
             startActivity(intent)
         }
-        inicializaToolbar()
+        //inicializaToolbar()
 
         /* Inicializando a lista do Menu principal */
         menuList = ArrayList()
@@ -66,16 +66,6 @@ class MenuActivity : AppCompatActivity() {
         recyclerViewMenuAdapter = MenuItemAdapter(this, menuList) { menuData ->
             /* Acoes de clique nos itens do menu: abrindo uma nova activity correspondente */
             when (menuData.titulo) {
-                "Cadastrar animal" -> {
-                    val intent = Intent(this, CadastroAnimalActivity::class.java)
-                    startActivity(intent)
-                }
-
-                "Localizar animal" -> {
-                    val intent = Intent(this, LocalizarAnimalActivity::class.java)
-                    startActivity(intent)
-                }
-
                 "Consultar animais" -> {
                     val intent = Intent(this, ConsultarAnimaisActivity::class.java)
                     startActivity(intent)
@@ -101,7 +91,7 @@ class MenuActivity : AppCompatActivity() {
             }
         }
         /* Configurando o layout da RecyclerView como um GridLayoutManager com 1 coluna */
-        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 1)
+        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(this, 2)
         recyclerViewMenu!!.layoutManager = layoutManager
 
         /* Configurando o adaptador para a RecyclerView */
@@ -113,7 +103,7 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        dadosUsuario()
+        //dadosUsuario()
     }
 
     private fun dadosUsuario() {
@@ -149,43 +139,35 @@ class MenuActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun inicializaToolbar() {
-        val toolbar = binding.tbMenuPrincipal.toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            title = "Meu Rebanho"
-        }
+//    private fun inicializaToolbar() {
+//        val toolbar = binding.userToolbar.toolbar
+//        setSupportActionBar(toolbar)
+//        supportActionBar?.apply {
+//            title = "Meu Rebanho"
+//        }
 
-        addMenuProvider(
-            object : MenuProvider {
-                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                    menuInflater.inflate(R.menu.menu_principal, menu)
-                }
+//        addMenuProvider(
+//            object : MenuProvider {
+//                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+//                    menuInflater.inflate(R.menu.menu_principal, menu)
+//                }
 
-                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                    when (menuItem.itemId) {
-                        R.id.item_sair -> {
-                            deslogarUsuario()
-                        }
-                    }
-                    return true
-                }
-            }
-        )
-    }
+//                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+//                    when (menuItem.itemId) {
+//                        R.id.item_sair -> {
+//                            deslogarUsuario()
+//                        }
+//                    }
+//                    return true
+//                }
+            //}
+//        )
+//    }
 
     /* Preparando os dados da lista do Menu e adicionando os itens */
     private fun prepareMenuListData() {
-        /* Criando um objeto MenuData para "Cadastrar animal" com a imagem correspondente */
-        var menu = MenuData("Cadastrar animal", R.drawable.add_animal)
-        menuList.add(menu)
-
-        /* Criando um objeto MenuData para "Localizar animal" com a imagem correspondente */
-        menu = MenuData("Localizar animal", R.drawable.rota_loc)
-        menuList.add(menu)
-
         /* Criando um objeto MenuData para "Consultar animais" com a imagem correspondente */
-        menu = MenuData("Consultar animais", R.drawable.search)
+        var menu = MenuData("Consultar animais", R.drawable.search)
         menuList.add(menu)
 
         /* Criando um objeto MenuData para "Relatórios" com a imagem correspondente */

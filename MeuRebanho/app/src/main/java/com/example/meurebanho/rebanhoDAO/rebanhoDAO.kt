@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import com.example.meurebanho.model.Animal;
 import com.example.meurebanho.view.ConsultarAnimaisActivity
+import com.google.firebase.database.FirebaseDatabase
 
 
 class rebanhoDAO():rebanhoDAOinterface {
@@ -34,7 +35,7 @@ class rebanhoDAO():rebanhoDAOinterface {
     }
 
     private constructor(mainactivity: ConsultarAnimaisActivity) : this() {
-        rebanhoDAO.mainActivity = mainactivity;
+        mainActivity = mainactivity;
         lista = ArrayList();
     }
         override fun addAnimal(animal:Animal):Boolean {
@@ -50,16 +51,18 @@ class rebanhoDAO():rebanhoDAOinterface {
             // Add a new document with a generated ID
             //var documento:DocumentReference
             db.collection("Animais")
-                .document( animal.codigo )
-                .set( user )
+                .add( user )
                 .addOnSuccessListener{
-//                        Toast.makeText( mainActivity, animal.codigo , Toast.LENGTH_LONG ).show();
+                        //Toast.makeText( mainActivity, animal.codigo , Toast.LENGTH_LONG ).show();
+                        animal.documentID= it.id
                         lista.add( animal );
-                        //mainActivity.notifyAdapter();
-                        //Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
+                        /* criando nó no Firebase Realtime Database */
+                        nodeFilhoAnimalRTDB(animal.documentID)
+                        mainActivity.notifyAdapter();
+                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
                 }
                 .addOnFailureListener {
-//                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
+                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
                 };
 
             //mainActivity.controlProgressBar( false );
@@ -68,36 +71,36 @@ class rebanhoDAO():rebanhoDAOinterface {
         }
 
     override fun editAnimal(c: Animal): Boolean {
-            var newAnimal:DocumentReference  = db.collection("Animais").document( c.codigo );
+            var newAnimal:DocumentReference  = db.collection("Animais").document( c.documentID );
             newAnimal.update("codigo", c.codigo,
+                "raca",c.raca,
+                "especie",c.especie,
+                "cor",c.cor,
+                "sexo",c.sexo,
                 "datanasc", c.datanasc )
-                .addOnSuccessListener(OnSuccessListener<Void>() {
-                    fun onSuccess() {
-//                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
+                .addOnSuccessListener{
+                    Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
 
                         for( animal:Animal in lista ){
 
-                        if(animal.codigo == c.codigo){
+                        if(animal.documentID == c.documentID){
                             animal.raca= c.raca;
+                            animal.especie=c.especie
                             animal.cor= c.cor;
                             animal.sexo= c.sexo;
                             animal.datanasc= c.datanasc;
                             animal.codigo= c.codigo;
 
-                            //mainActivity.notifyAdapter();
-
                             break;
 
                         }
                     }
-
-                        //mainActivity.notifyAdapter();
-                    }
-                })
+                    mainActivity.notifyAdapter();
+                }
                 .addOnFailureListener(OnFailureListener() {
                     @Override
                     fun onFailure( e:Exception) {
-//                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
+                        Toast.makeText( mainActivity, "Error", Toast.LENGTH_LONG ).show();
                         //mainActivity.notifyAdapter();
                     }
                 });
@@ -109,7 +112,7 @@ class rebanhoDAO():rebanhoDAOinterface {
             var c:Animal? = null;
 
             for( animal:Animal in lista ){
-            if( animal.codigo == codigoanimal) {
+            if( animal.documentID == codigoanimal) {
                 c = animal;
                 break;
             }
@@ -119,12 +122,12 @@ class rebanhoDAO():rebanhoDAOinterface {
 
                val apagar:Animal= c;
 
-                 var deleteanimal:DocumentReference = db.collection("Animais").document( c.codigo );
+                 var deleteanimal:DocumentReference = db.collection("Animais").document( c.documentID );
                 deleteanimal.delete().addOnSuccessListener( OnSuccessListener<Void>() {
-  //                      Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
+                        Toast.makeText( mainActivity, "Sucess", Toast.LENGTH_LONG ).show();
                         var animalapagar:Animal? = null;
                         for( animal:Animal in lista ){
-                        if( animal.codigo== apagar.codigo ){
+                        if( animal.documentID== apagar.documentID ){
                             animalapagar = animal;
                         }
                         if( animalapagar != null ) {
@@ -133,7 +136,6 @@ class rebanhoDAO():rebanhoDAOinterface {
                             break
                         }
                     }
-
                 })
                     .addOnFailureListener(OnFailureListener() {
                         fun onFailure( e:Exception) {
@@ -147,7 +149,6 @@ class rebanhoDAO():rebanhoDAOinterface {
             return false;
         }
 
-        @Override
         override fun getAnimal(animalId:String): Animal? {
             return null;
         }
@@ -175,9 +176,10 @@ class rebanhoDAO():rebanhoDAOinterface {
                                     sexo,
                                     datanasc,
                                     codigo,
+                                    data.id,
                                     (R.drawable.nelore1)
                                 );
-                                c.codigo = data.id;
+                                //c.codigo = data.id;
 
                                 lista.add(c);
                             }
@@ -186,7 +188,7 @@ class rebanhoDAO():rebanhoDAOinterface {
                     }
                     mainActivity.notifyAdapter()
                     }).addOnFailureListener{
-//                    Toast.makeText( mainActivity, it.toString(), Toast.LENGTH_SHORT ).show();
+                     Toast.makeText( mainActivity, it.toString(), Toast.LENGTH_SHORT ).show();
                 }
             return lista
         }
@@ -196,6 +198,17 @@ class rebanhoDAO():rebanhoDAOinterface {
     override fun init(): Boolean {
         db = FirebaseFirestore.getInstance();
         return true;
+    }
+    private fun nodeFilhoAnimalRTDB(animalId: String) {
+        /* Obtendo uma referencia ao no "Animal" no Firebase Realtime Database */
+        val database = FirebaseDatabase.getInstance()
+        val animalRef = database.getReference("Animal/$animalId/")
+
+        /* Criando um novo no com o ID do animal como chave */
+        val novoAnimalRef = animalRef.child("GPS")
+
+        /* Adicionando os dados ao novo nó */
+        novoAnimalRef.setValue("")
     }
 
     override fun close(): Boolean=false;
