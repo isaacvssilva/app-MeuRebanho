@@ -50,11 +50,11 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        perfilUsr = findViewById(R.id.icon_usuario)
-        perfilUsr.setOnClickListener {
-            val intent = Intent(this, PerfilUsuarioActivity::class.java)
-            startActivity(intent)
-        }
+//        perfilUsr = findViewById(R.id.icon_usuario)
+//        perfilUsr.setOnClickListener {
+//            val intent = Intent(this, PerfilUsuarioActivity::class.java)
+//            startActivity(intent)
+//        }
         //inicializaToolbar()
 
         /* Inicializando a lista do Menu principal */
@@ -103,7 +103,7 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //dadosUsuario()
+        dadosUsuario()
     }
 
     private fun dadosUsuario() {
@@ -140,18 +140,18 @@ class MenuActivity : AppCompatActivity() {
     }
 
 //    private fun inicializaToolbar() {
-//        val toolbar = binding.userToolbar.toolbar
+//        val toolbar = binding.tbMenuPrincipal.toolbar
 //        setSupportActionBar(toolbar)
 //        supportActionBar?.apply {
 //            title = "Meu Rebanho"
 //        }
-
+//
 //        addMenuProvider(
 //            object : MenuProvider {
 //                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
 //                    menuInflater.inflate(R.menu.menu_principal, menu)
 //                }
-
+//
 //                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
 //                    when (menuItem.itemId) {
 //                        R.id.item_sair -> {
@@ -160,7 +160,7 @@ class MenuActivity : AppCompatActivity() {
 //                    }
 //                    return true
 //                }
-            //}
+//            }
 //        )
 //    }
 

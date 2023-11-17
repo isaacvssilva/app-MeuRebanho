@@ -106,9 +106,9 @@ class LocalizaMapsActivity : AppCompatActivity() {
                     /* recebendo dados do search view com o id do animal */
                     val bundle = intent.extras
                     if (bundle != null) {
-                        val id = bundle.getString("id")
+                        val id = bundle.getString("id").toString()
                         /* Inicializando funcao que captura a posicao do animal */
-                        posicaoAtualAnimal(id.toString())
+                        posicaoAtualAnimal(id)
                     }
                     /* Limpando o mapa para evitar acumulacao de marcadores antigos */
                     googleMap?.clear()

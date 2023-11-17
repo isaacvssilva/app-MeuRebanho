@@ -1,5 +1,6 @@
 package com.example.meurebanho.view
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.R
 import com.example.meurebanho.controller.codes
 import com.github.mikephil.charting.charts.LineChart
@@ -25,6 +28,7 @@ class DetailAnimal : AppCompatActivity() {
     private lateinit var lineChart: LineChart
     private var xValues = ArrayList<String>()
     private lateinit var documentid:String;
+    private lateinit var codigoanimal:String;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_animal)
@@ -37,6 +41,8 @@ class DetailAnimal : AppCompatActivity() {
         var cor = findViewById<TextView>(R.id.cor_animal)
         var codigo = findViewById<TextView>(R.id.codigo_animal)
         var sexo = findViewById<TextView>(R.id.sexo_animal)
+        var btn_localizar = findViewById<Button>(R.id.localizar_ani)
+
 
         if (intent.extras != null) {
             datanasc.setText("Data de nascimento: "+intent.extras!!.getString(codes.Codes.CHAVE_DATANASC))
@@ -45,8 +51,28 @@ class DetailAnimal : AppCompatActivity() {
             cor.setText ("Cor: "+intent.extras!!.getString(codes.Codes.CHAVE_COR))
             documentid= (intent.extras!!.getString(codes.Codes.CHAVE_DOCID).toString())
             codigo.setText("N° "+intent.extras!!.getString(codes.Codes.CHAVE_CODIGO))
+            codigoanimal=intent.extras!!.getString(codes.Codes.CHAVE_CODIGO).toString()
             sexo.setText("Sexo: "+intent.extras!!.getString(codes.Codes.CHAVE_SEXO))
 
+        }
+
+        btn_localizar.setOnClickListener {
+            val intent = Intent(this, LocalizaMapsActivity::class.java)
+            Toast.makeText(this, "click", Toast.LENGTH_SHORT).show()
+
+            /* Carregando dado para a activity do google maps */
+            intent.putExtra("id", codigoanimal)
+
+            /* Verificando se há conexao com a internet */
+            if (NetworkUtils.isInternetAvailable(applicationContext)) {
+                startActivity(intent)
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    "Sem conexão à Internet. Tente novamente mais tarde.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
          lineChart=findViewById(R.id.chart)

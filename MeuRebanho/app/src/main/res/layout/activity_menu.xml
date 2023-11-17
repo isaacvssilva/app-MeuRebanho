@@ -18,16 +18,17 @@
 <!--      app:layout_constraintStart_toStartOf="parent"-->
 <!--      app:layout_constraintTop_toTopOf="parent" />-->
 
-  <LinearLayout
+  <RelativeLayout
       android:id="@+id/user_toolbar"
       android:layout_width="match_parent"
       android:layout_height="70dp"
-      android:layout_marginTop="10dp"
-      android:orientation="horizontal"
-      android:background="@drawable/background_text_view"
       android:layout_marginStart="10dp"
+      android:layout_marginTop="28dp"
       android:layout_marginEnd="10dp"
+      android:layout_weight="1"
+      android:background="@drawable/background_text_view"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="1.0"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent">
 
@@ -35,32 +36,38 @@
         android:id="@+id/icon_usuario"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        app:shapeAppearanceOverlay="@style/Circular"
-        app:strokeColor="@color/white"
-        app:strokeWidth="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
         android:scaleType="centerCrop"
         android:src="@drawable/nelore1"
-        android:layout_marginStart="15dp"
-        android:layout_gravity="center_vertical"/>
+        app:shapeAppearanceOverlay="@style/Circular"
+        app:strokeColor="@color/white"
+        app:strokeWidth="0.5dp" />
 
     <TextView
         android:id="@+id/user_tv"
         android:layout_width="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_gravity="center_vertical"
         android:layout_height="27dp"
-        android:textColor="@color/black"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/icon_usuario"
+        android:layout_marginStart="20dp"
         android:text="USUARIO23"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="10dp"
-        android:layout_gravity="end|right|center_vertical"/>
+        android:backgroundTint="@color/verdefolha"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/baseline_menu_50"
+        android:layout_marginEnd="25dp" />
 
 
-  </LinearLayout>
+  </RelativeLayout>
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rv_list_menu"
@@ -71,10 +78,10 @@
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/user_toolbar"
-      app:layout_constraintVertical_bias="0.024"
+      app:layout_constraintVertical_bias="0.315"
       tools:listitem="@layout/item_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
