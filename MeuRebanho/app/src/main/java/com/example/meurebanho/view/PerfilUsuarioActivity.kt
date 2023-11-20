@@ -101,6 +101,23 @@ class PerfilUsuarioActivity : AppCompatActivity() {
         }
     }
 
+    private fun deslogarUsuario() {
+        AlertDialog.Builder(this)
+            .setTitle("Deslogar")
+            .setMessage("Deseja realmente sair?")
+            .setNegativeButton("Não") { dialog, posicao -> }
+            .setPositiveButton("Sim") { dialog, posicao ->
+                firebaseAuth.signOut()
+                /* Encerrando todas as atividades e indo para a MainActivity */
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
+            .create()
+            .show()
+    }
+
 
     private fun dadosUsuario() {
         val idUsuario = firebaseAuth.currentUser?.uid

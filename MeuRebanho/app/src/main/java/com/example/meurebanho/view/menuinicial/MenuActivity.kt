@@ -50,11 +50,12 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        perfilUsr = findViewById(R.id.icon_usuario)
-//        perfilUsr.setOnClickListener {
-//            val intent = Intent(this, PerfilUsuarioActivity::class.java)
-//            startActivity(intent)
-//        }
+        perfilUsr = findViewById(R.id.btn_user)
+        perfilUsr.setOnClickListener {
+            val intent = Intent(this, PerfilUsuarioActivity::class.java)
+            startActivity(intent)
+        }
+
         //inicializaToolbar()
 
         /* Inicializando a lista do Menu principal */

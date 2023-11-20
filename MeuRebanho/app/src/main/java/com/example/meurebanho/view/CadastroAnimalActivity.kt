@@ -181,7 +181,10 @@ class CadastroAnimalActivity : AppCompatActivity() {
         val toolbar = binding.tbCadastroAni.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            title = "Cadastrar Animal"
+            if (intent.extras != null)
+                title = "Alterar Animal"
+            else
+                title = "Cadastrar Animal"
             setDisplayHomeAsUpEnabled(true)
         }
     }

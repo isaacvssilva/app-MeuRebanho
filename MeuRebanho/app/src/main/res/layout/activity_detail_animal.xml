@@ -40,10 +40,14 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:orientation="vertical"
         >
 
@@ -131,12 +135,43 @@
                 android:layout_marginTop="30dp"
                 android:text="Localizar Animal"
                 android:layout_marginBottom="8dp"/>
-                        <com.github.mikephil.charting.charts.LineChart
-                            android:id="@+id/chart"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"/>
+
+            <TextView
+                android:id="@+id/historico_peso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="20dp"
+                android:paddingStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="Historico de Pesos" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+
+            <Button
+                android:id="@+id/btn_historico_peso"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Ver historico de pesos"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btn_add_peso"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Adicionar peso animal"
+                android:layout_marginBottom="8dp"/>
+
+
         </LinearLayout>
     </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="90dp"

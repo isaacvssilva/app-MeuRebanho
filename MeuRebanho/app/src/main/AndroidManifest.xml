@@ -20,11 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".PesoAnimal"
-            android:exported="false" />
-        <activity
-            android:name=".peso_Animlal"
-            android:exported="false" />
+            android:name=".view.PesoAnimal"
+            android:exported="false"
+            android:parentActivityName=".view.DetailAnimal"/>
         <activity
             android:name=".view.ConfiguraRastreadorActivity"
             android:exported="false"
@@ -78,7 +76,7 @@
         <activity
             android:name=".view.LocalizarAnimalActivity"
             android:exported="false"
-            android:parentActivityName=".view.menuinicial.MenuActivity" />
+            android:parentActivityName=".view.DetailAnimal" />
         <activity
             android:name=".view.ConsultarAnimaisActivity"
             android:exported="false"
@@ -89,7 +87,7 @@
         <activity
             android:name=".view.CadastroAnimalActivity"
             android:exported="false"
-            android:parentActivityName=".view.menuinicial.MenuActivity" />
+            android:parentActivityName=".view.ConsultarAnimaisActivity" />
         <activity
             android:name=".view.CadastroUsuarioActivity"
             android:exported="false"
@@ -97,7 +95,7 @@
         <activity
             android:name=".view.DetailAnimal"
             android:exported="false"
-            android:parentActivityName=".view.menuinicial.MenuActivity" />
+            android:parentActivityName=".view.ConsultarAnimaisActivity" />
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
