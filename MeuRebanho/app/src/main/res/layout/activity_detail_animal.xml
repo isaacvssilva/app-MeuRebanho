@@ -68,6 +68,17 @@
                 android:paddingTop="5dp"
                 tools:text="N° 24567677HJKU" />
 
+            <TextView
+                android:id="@+id/locDistanciaAnimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:minHeight="25dp"
+                android:paddingStart="8dp"
+                android:paddingTop="5dp"
+                tools:text="KM" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -122,6 +133,7 @@
                 tools:text="Sexo:"
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
