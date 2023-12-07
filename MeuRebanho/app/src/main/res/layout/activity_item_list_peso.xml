@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_peso"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:orientation="horizontal"
+    app:cardCornerRadius="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/background_text_view"
+        android:orientation="horizontal"
+        android:paddingStart="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/list_codigo_peso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:paddingStart="8dp"
+                android:layout_marginTop="10dp"
+                android:minHeight="25dp"
+                android:paddingTop="5dp"
+                tools:text="N° 24567677HJKU" />
+            <TextView
+                android:id="@+id/list_peso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="20dp"
+                android:paddingStart="15dp"
+                android:layout_marginTop="5dp"
+                tools:text="yennefer" />
+
+            <TextView
+                android:id="@+id/list_datapeso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#258A00"
+                android:paddingStart="15dp"
+                android:minHeight="20dp"
+                tools:text="yennefer"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button_edit_peso"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="@+id/button_delete_peso"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:layout_toEndOf="@+id/button_delete_peso"
+                android:backgroundTint="@color/verdefolha"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_edit_animal_foreground" />
+
+            <ImageButton
+                android:id="@+id/button_delete_peso"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/verdefolha"
+                android:contentDescription="botao de delete"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_delete_animal_foreground" />
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+

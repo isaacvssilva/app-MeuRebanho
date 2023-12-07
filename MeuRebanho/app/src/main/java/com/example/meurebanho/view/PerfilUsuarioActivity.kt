@@ -2,9 +2,12 @@ package com.example.meurebanho.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityPerfilUsuarioBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,6 +28,11 @@ class PerfilUsuarioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPerfilUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var btn_sair = findViewById<Button>(R.id.sair_app)
+        btn_sair.setOnClickListener{
+            deslogarUsuario()
+        }
+
         inicializaToolbar()
         dadosUsuario()
         editarNome()
@@ -32,6 +40,8 @@ class PerfilUsuarioActivity : AppCompatActivity() {
         editarEmail()
         editarSenha()
         deletarConta()
+
+
     }
 
     private fun deletarConta() {

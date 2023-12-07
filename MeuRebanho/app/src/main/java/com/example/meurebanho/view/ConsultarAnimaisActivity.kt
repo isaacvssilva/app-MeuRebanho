@@ -38,14 +38,6 @@ class ConsultarAnimaisActivity:AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         initToolbal()
 
-//        if (savedInstanceState == null) {
-//            supportFragmentManager
-//                .beginTransaction()
-//                .add(
-//                    R.id.container_root, fragmentlist.newInstance(),
-//                    "fragmentlist"
-//                )
-//                .commit()
         animalDAO = rebanhoDAO.getInstance(this)
 
         animalDAO.init()

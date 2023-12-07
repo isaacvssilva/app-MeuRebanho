@@ -20,9 +20,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".view.PesoAnimal"
+            android:name=".item_list_peso"
+            android:exported="false" />
+        <activity
+            android:name=".view.ListPesosAnimais"
             android:exported="false"
             android:parentActivityName=".view.DetailAnimal"/>
+        <activity
+            android:name=".view.CadastroPesoActivity"
+            android:exported="false"
+            android:parentActivityName=".view.DetailAnimal" />
         <activity
             android:name=".view.ConfiguraRastreadorActivity"
             android:exported="false"
