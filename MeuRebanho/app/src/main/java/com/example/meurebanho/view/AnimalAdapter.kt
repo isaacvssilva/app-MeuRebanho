@@ -45,13 +45,11 @@ inner class ViewHolderAnimal (itemView: View):
 
         val cardview:CardView =itemView.findViewById(R.id.item_animal)
 
-        val distancia: TextView = itemView.findViewById(R.id.list_distancia)
 
         listcodigo.text="N°"+character.codigo
         listimg.setImageResource(R.drawable.nelore1)
         listraca.text=character.raca
         listcor.text=character.cor
-        distancia.text="8km"
 
         cardview.setOnClickListener{
             activity.abrir_detalhes_animal(adapterPosition)
