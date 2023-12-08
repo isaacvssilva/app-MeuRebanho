@@ -113,7 +113,7 @@ class DetailAnimal : AppCompatActivity() {
 
         btn_localizar.setOnClickListener {
             val intent = Intent(this, LocalizaMapsActivity::class.java)
-            Toast.makeText(this, "click", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Localizando...", Toast.LENGTH_SHORT).show()
 
             /* Carregando dado para a activity do google maps */
             intent.putExtra("id", codigoanimal)

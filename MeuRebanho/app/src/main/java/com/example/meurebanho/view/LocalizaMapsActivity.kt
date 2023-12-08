@@ -1,6 +1,8 @@
 package com.example.meurebanho.view
 
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +13,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -127,10 +130,21 @@ class LocalizaMapsActivity : AppCompatActivity() {
         /* Adicionando marcador de origem apos a leitura da posicao atual */
         if (origem.latitude != 0.0 && origem.longitude != 0.0) {
 
-            /* Criando marcador para o origem */
+            /* Obtendo o bitmap do recurso de imagem */
+            val bitmapUsuario = BitmapFactory.decodeResource(resources, R.drawable.usuario)
+
+            /* Redimensionando o bitmap (por exemplo, pela metade do tamanho original) */
+            val resizedBitmap = Bitmap.createScaledBitmap(
+                bitmapUsuario,
+                bitmapUsuario.width / 12,
+                bitmapUsuario.height / 12,
+                false
+            )
+
+            /* Criando marcador para a origem com o bitmap redimensionado */
             marcadorOrigem = googleMap.addMarker(
                 MarkerOptions()
-                    /* Definindo a posicao do marcador via coordenadas */
+                    .icon(BitmapDescriptorFactory.fromBitmap(resizedBitmap))
                     .position(origem)
                     .title("Sua Localização")
             )
@@ -142,10 +156,21 @@ class LocalizaMapsActivity : AppCompatActivity() {
         /* Adicionando marcador de destino apos a leitura dos dados do Firebase */
         if (destino.latitude != 0.0 && destino.longitude != 0.0) {
 
-            /* Criando marcador para o destino */
-            marcadorDestino = googleMap.addMarker(
+            /* Obtendo o bitmap do recurso de imagem */
+            val bitmapAnimal = BitmapFactory.decodeResource(resources, R.drawable.animal)
+
+            /* Redimensionando o bitmap (por exemplo, pela metade do tamanho original) */
+            val resizedBitmapAnimal = Bitmap.createScaledBitmap(
+                bitmapAnimal,
+                bitmapAnimal.width / 12,
+                bitmapAnimal.height / 12,
+                false
+            )
+
+            /* Criando marcador para a origem com o bitmap redimensionado */
+            marcadorOrigem = googleMap.addMarker(
                 MarkerOptions()
-                    /* Definindo a posicao do marcador via coordenadas */
+                    .icon(BitmapDescriptorFactory.fromBitmap(resizedBitmapAnimal))
                     .position(destino)
                     .title("Animal")
             )

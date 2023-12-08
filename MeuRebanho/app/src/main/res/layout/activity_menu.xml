@@ -40,7 +40,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="15dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/nelore1"
+        android:src="@drawable/usuario"
         app:shapeAppearanceOverlay="@style/Circular"
         app:strokeColor="@color/white"
         app:strokeWidth="0.5dp" />
@@ -53,7 +53,7 @@
         android:layout_toRightOf="@+id/icon_usuario"
         android:layout_marginStart="20dp"
         android:text="USUARIO23"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp" />
 
     <ImageButton
