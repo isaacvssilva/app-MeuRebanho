@@ -36,38 +36,39 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="180dp"
+            android:layout_width="154dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/list_codigo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:paddingStart="8dp"
-            android:layout_marginTop="10dp"
-            android:minHeight="25dp"
-            android:paddingTop="5dp"
-            tools:text="N° 24567677HJKU" />
-        <TextView
-            android:id="@+id/list_raca"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="20dp"
-            android:paddingStart="15dp"
-            android:layout_marginTop="5dp"
-            tools:text="yennefer" />
+            <TextView
+                android:id="@+id/list_codigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="25dp"
+                android:paddingStart="8dp"
+                android:paddingTop="5dp"
+                android:textColor="@color/white"
+                tools:text="N° 24567677HJKU" />
 
-        <TextView
-            android:id="@+id/list_cor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#258A00"
-            android:paddingStart="15dp"
-            android:minHeight="20dp"
-            tools:text="yennefer"
-            android:layout_marginTop="2dp"/>
+            <TextView
+                android:id="@+id/list_raca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:minHeight="20dp"
+                android:paddingStart="15dp"
+                tools:text="yennefer" />
+
+            <TextView
+                android:id="@+id/list_cor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:backgroundTint="#258A00"
+                android:minHeight="20dp"
+                android:paddingStart="15dp"
+                tools:text="yennefer" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -2,21 +2,15 @@ package com.example.meurebanho.view.menuinicial
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.meurebanho.view.DetailAnimal
 import com.example.meurebanho.R
 import com.example.meurebanho.databinding.ActivityMenuBinding
 import com.example.meurebanho.view.AlertasActivity
-import com.example.meurebanho.view.CadastroAnimalActivity
 import com.example.meurebanho.view.ConsultarAnimaisActivity
 import com.example.meurebanho.view.MainActivity
 import com.example.meurebanho.view.PerfilUsuarioActivity
@@ -67,7 +61,7 @@ class MenuActivity : AppCompatActivity() {
         recyclerViewMenuAdapter = MenuItemAdapter(this, menuList) { menuData ->
             /* Acoes de clique nos itens do menu: abrindo uma nova activity correspondente */
             when (menuData.titulo) {
-                "Consultar animais" -> {
+                "Gerenciar animais" -> {
                     val intent = Intent(this, ConsultarAnimaisActivity::class.java)
                     startActivity(intent)
                 }
@@ -168,7 +162,7 @@ class MenuActivity : AppCompatActivity() {
     /* Preparando os dados da lista do Menu e adicionando os itens */
     private fun prepareMenuListData() {
         /* Criando um objeto MenuData para "Consultar animais" com a imagem correspondente */
-        var menu = MenuData("Consultar animais", R.drawable.search)
+        var menu = MenuData("Gerenciar animais", R.drawable.search)
         menuList.add(menu)
 
         /* Criando um objeto MenuData para "Relatórios" com a imagem correspondente */

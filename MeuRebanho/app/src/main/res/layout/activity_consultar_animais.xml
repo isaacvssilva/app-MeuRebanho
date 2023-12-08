@@ -19,7 +19,7 @@
 
             app:expandedTitleTextColor="@color/black"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:title="Consultar Animais"
+            app:title="Gerenciar animais"
             app:titleCollapseMode="scale"
             app:titleEnabled="true">
 

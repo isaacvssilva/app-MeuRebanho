@@ -1,21 +1,21 @@
 package com.example.meurebanho.view
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import com.example.meurebanho.NetworkUtils
 import com.example.meurebanho.R
 import com.example.meurebanho.controller.codes
 import com.example.meurebanho.model.PesoAnimal
-import com.example.meurebanho.rebanhoDAO.pesoDAO
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
@@ -24,18 +24,14 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.firestore.FirebaseFirestore
-import java.text.SimpleDateFormat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import java.util.Date
-import java.util.Locale
-import android.location.Location
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DetailAnimal : AppCompatActivity() {
     private lateinit var lineChart: LineChart
@@ -285,7 +281,7 @@ class DetailAnimal : AppCompatActivity() {
                             val distanciaKm = distanciaPos[0] / 1000
 
                             /* Formatando a distância com duas casas decimais e a unidade "km" */
-                            val distanciaFormatada = String.format("%.2f km", distanciaKm)
+                            val distanciaFormatada = String.format("Distância: %.2f km", distanciaKm)
 
                             /* Atualizando o modelo do animal com a distância calculada */
                             animalModel.distancia = distanciaFormatada
